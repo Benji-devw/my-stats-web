@@ -25,6 +25,7 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "dotenv": "^16.3.2",
     "eslint": "^8",
     "eslint-config-next": "14.1.0"
   }

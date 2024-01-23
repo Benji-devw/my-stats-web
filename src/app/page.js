@@ -1,7 +1,29 @@
+"use client"
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [datas, setDatas] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => setDatas(data))
+      .catch((error) => console.error("Fetch error:", error));
+  }, []);
+
+  console.log(datas);
   return (
     <main className={styles.main}>
       <div className={styles.description}>

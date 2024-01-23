@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "storage": "./new_collection.db",
+    "define": {
+      "timestamps": true,
+      "underscored": true
+    },
+    "host": "127.0.0.1",
+    "dialect": "sqlite"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "./new_collection.db",
+    "host": "127.0.0.1",
+    "dialect": "sqlite"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "./new_collection.db",
+    "host": "127.0.0.1",
+    "dialect": "sqlite"
+  }
+}

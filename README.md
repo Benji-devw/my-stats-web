@@ -2,6 +2,26 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+### With Sequelize Create SQLite database:
+```bash
+// node connect.js
+npx sequelize-cli db:migrate
+```
+
+Seed data:
+```bash
+npx sequelize-cli db:seed:all
+```
+
+### Fix error "Error: Please install sqlite3 package manually" :
+- Add to next.config.mjs
+```js  
+experimental: {
+    serverComponentsExternalPackages: ['sequelize'],
+    externalDir: true,
+  },
+```
+
 First, run the development server:
 
 ```bash
