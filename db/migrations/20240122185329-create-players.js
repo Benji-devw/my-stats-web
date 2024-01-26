@@ -33,7 +33,10 @@ module.exports = {
         type: Sequelize.REAL
       },
       golden: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.INTEGER
+      },
+      golden_old: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

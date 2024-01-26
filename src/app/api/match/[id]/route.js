@@ -2,7 +2,7 @@
 const db = require("/db/models/index");
 db.sequelize.sync();
 
-
+// Add get method to get all matches
 export async function GET(req, res) {
   const matchId = res.params.id;
 

@@ -11,6 +11,7 @@ const db = {};
 
 const Matches = require('./matches');
 const Players = require('./players');
+const Players_Matches = require('./playersmatches');
 // console.log('-------------basename--------------', basename.Matches);
 
 let sequelize;
@@ -46,6 +47,7 @@ db.Sequelize = Sequelize;
 
 db.Matches = Matches(sequelize, Sequelize);
 db.Players = Players(sequelize, Sequelize);
+db.Players_Matches = Players_Matches(sequelize, Sequelize);
 db.Matches.associate({ Players: db.Players });
 db.Players.associate({ Matches: db.Matches });
 

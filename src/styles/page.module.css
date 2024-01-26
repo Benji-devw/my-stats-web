@@ -5,6 +5,9 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  
+  position: relative;
+  z-index: 100;
 }
 
 .description {
@@ -29,7 +32,7 @@
   position: relative;
   margin: 0;
   padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
+  background-color: rgb(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
 }
@@ -44,14 +47,23 @@
   grid-template-columns: repeat(4, minmax(25%, auto));
   max-width: 100%;
   width: var(--max-width);
+  text-align: center;
 }
 
+.title_card {
+  display: flex;
+  flex-direction: column;
+}
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
+  position: relative;
 }
 
 .card span {
@@ -60,28 +72,42 @@
 }
 
 .card h2 {
+  position: relative;
   font-weight: 600;
   margin-bottom: 0.7rem;
 }
 
 .card p {
-  margin: 0;
-  opacity: 0.6;
+  margin: 0 auto;
+  /* opacity: 0.6; */
   font-size: 0.9rem;
   line-height: 1.5;
   max-width: 30ch;
   text-wrap: balance;
 }
-
+.card_media {
+  position: relative;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.card_media_or {
+  position: relative;
+  margin: 0 auto;
+  right: 2rem;
+  bottom: 0rem;
+}
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   padding: 4rem 0;
+  position: relative;
+  z-index: -1;
 }
 
 .center::before {
+  position: fixed;
   background: var(--secondary-glow);
   border-radius: 50%;
   width: 480px;
@@ -101,7 +127,7 @@
   content: "";
   left: 50%;
   position: absolute;
-  filter: blur(45px);
+  filter: blur(55px);
   transform: translateZ(0);
 }
 
@@ -207,16 +233,6 @@
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
     grid-template-columns: repeat(2, 50%);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .vercelLogo {
-    filter: invert(1);
-  }
-
-  .logo {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
   }
 }
 
