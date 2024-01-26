@@ -1,4 +1,4 @@
-import styles from "@styles/page.module.css";
+import styles from "@styles/player_card.module.css";
 import Image from "next/image";
 
 const PayerCard = ({
@@ -8,7 +8,7 @@ const PayerCard = ({
   golden_old,
   totalStats,
 }) => {
-  console.log(totalStats);
+  // console.log(totalStats);
   return (
     <a
       href="#"
@@ -16,7 +16,7 @@ const PayerCard = ({
       // target="_blank"
       rel="noopener noreferrer"
     >
-      <h2 className={styles.title_card}>
+      <h2 className={styles.card_title}>
         <div className={""}>
           <Image
             src={media}
@@ -37,26 +37,10 @@ const PayerCard = ({
             />
           )}
         </div>
-        {/* <span>-&gt;</span> */}
-
         {name}
       </h2>
-
-      {/* <p>
-        {golden === 1 && (
-          <Image
-            src={"/ballon-d-or-2.png"}
-            alt={name}
-            className={styles.card_media}
-            width={50}
-            height={50}
-            priority
-          />
-        )}
-      </p> */}
-
       <p>
-        <b>STATS : </b>
+        <b>TOTAL : </b>
       </p>
 
       <p>
@@ -74,6 +58,7 @@ const PayerCard = ({
       <p>
         A été <b>{golden_old}</b> fois ballon d'or{" "}
       </p>
+      <h2><span>-&gt;</span></h2>
     </a>
   );
 };

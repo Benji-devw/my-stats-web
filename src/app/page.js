@@ -1,12 +1,11 @@
 "use client";
-
 //TODO: ADD AXIOS for remove use Client
-import Image from "next/image";
 import styles from "@styles/page.module.css";
 import "@styles/globals.css";
 import { useEffect, useState } from "react";
 import PlayerCard from "@components/Player_Card.jsx";
 import calculateTotalStats from "@utils/totalStats.js";
+import MatchCard from "@/components/Match_Card";
 
 
 export default function Home() {
@@ -26,58 +25,36 @@ export default function Home() {
         }
         return res.json();
       })
-      .then((data) => setDatas(data))
+      .then((data) => {
+        setDatas(data)
+        setTotalStats(calculateTotalStats(data.playerMatches));
+      })
       .catch((error) => console.error("Fetch error:", error));
   }, []);
 
-  useEffect(() => {
-    if (datas.playerMatches) {
-      const stats = calculateTotalStats(datas.playerMatches);
-      setTotalStats(stats);
-    }
-  }, [datas]);
   
-  // console.log(datas.players && Object(datas.players).map((player) => player.name));
-  // console.log(datas);
+  console.log(datas);
 
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>MY STATS</code>
-        </p>
-        <div>
-          <a
-            href="#"
-            // target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <>
+
+
+      <div className={styles.center}></div>
+      <div className={styles.matches_grid}>
+        {datas.matches &&
+          Object(datas.matches).map((match) => (
+            <MatchCard
+              key={match.id}
+              team1_name={match.team1_name}
+              team2_name={match.team2_name}
+              team1_score={match.team1_score}
+              team2_score={match.team2_score}
             />
-          </a>
-        </div>
+          ))
+        }
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
+      <div className={styles.players_grid}>
         {datas.players &&
           Object(datas.players).map((player) => (
             <PlayerCard
@@ -90,6 +67,6 @@ export default function Home() {
             />
           ))}
       </div>
-    </main>
+    </>
   );
 }

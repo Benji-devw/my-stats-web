@@ -5,14 +5,14 @@
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
-  --foreground-rgb: #FCFCFD;
-  --background: #1C1C1C;
-  --background-start-rgb: #1C1C1C;
-  --background-end-rgb: #1C1C1C;
+  --foreground-rgb: #fcfcfd;
+  --background: #1c1c1c;
+  --background-start-rgb: #1c1c1c;
+  --background-end-rgb: #1c1c1c;
 
-  --primary-60: #CAFF33;
-  --primary-70: #D8FF66;
-  --primary-80: #E5FF99;
+  --primary-60: #caff33;
+  --primary-70: #d8ff66;
+  --primary-80: #e5ff99;
 
   --primary-glow: radial-gradient(rgb(202, 255, 51), rgb(229, 255, 153));
   --secondary-glow: linear-gradient(

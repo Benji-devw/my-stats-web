@@ -1,0 +1,91 @@
+.title_card {
+  display: flex;
+  flex-direction: column;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 1rem 1rem;
+  border-radius: var(--border-radius);
+  /* background: rgba(var(--card-rgb), 0); */
+  border: 1px solid rgba(var(--card-border-rgb), 0);
+  transition: background 200ms, border 200ms;
+  position: relative;
+
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+
+  background: rgba(var(--card-rgb), 0.3);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+}
+
+.card span {
+  display: inline-block;
+  transition: transform 200ms;
+}
+
+.card h2 {
+  position: relative;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+}
+
+.card p {
+  margin: 0 auto;
+  /* opacity: 0.6; */
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 30ch;
+  text-wrap: balance;
+}
+.card_media {
+  position: relative;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.card_media_or {
+  position: relative;
+  margin: 0 auto;
+  right: 2rem;
+  bottom: 0rem;
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  }
+
+  .card:hover span {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .card:hover span {
+    transform: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .content {
+    padding: 4rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    margin-bottom: 120px;
+    max-width: 320px;
+    text-align: center;
+  }
+
+  .card {
+    /* padding: 1rem 2.5rem; */
+  }
+
+  .card h2 {
+    margin-bottom: 0.5rem;
+  }
+}
