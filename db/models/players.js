@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     team: DataTypes.TEXT,
     comment_team: DataTypes.TEXT,
     comment_player: DataTypes.TEXT,
-    player_average: DataTypes.REAL
+    player_average: DataTypes.REAL,
+    golden: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Players',

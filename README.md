@@ -6,6 +6,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ```bash
 // node connect.js
 npx sequelize-cli db:migrate
+or
+sequelize db:migrate
 ```
 
 Seed data:
