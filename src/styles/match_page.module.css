@@ -1,0 +1,7 @@
+.match_page_grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(25%, auto));
+  width: 80%;
+  /* width: var(--max-width); */
+  text-align: center;
+}

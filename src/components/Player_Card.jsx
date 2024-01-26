@@ -1,5 +1,6 @@
 import styles from "@styles/player_card.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const PayerCard = ({
   name,
@@ -10,12 +11,7 @@ const PayerCard = ({
 }) => {
   // console.log(totalStats);
   return (
-    <a
-      href="#"
-      className={styles.card}
-      // target="_blank"
-      rel="noopener noreferrer"
-    >
+    <div className={styles.card}>
       <h2 className={styles.card_title}>
         <div className={""}>
           <Image
@@ -59,7 +55,7 @@ const PayerCard = ({
         A été <b>{golden_old}</b> fois ballon d'or{" "}
       </p>
       <h2><span>-&gt;</span></h2>
-    </a>
+    </div>
   );
 };
 

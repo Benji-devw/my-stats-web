@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     team2_name: DataTypes.STRING,
     team1_score: DataTypes.INTEGER,
     team2_score: DataTypes.INTEGER,
-    match_average: DataTypes.REAL
+    match_average: DataTypes.REAL,
+    encounter_date: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Matches',

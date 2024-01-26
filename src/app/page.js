@@ -1,12 +1,13 @@
 "use client";
 //TODO: ADD AXIOS for remove use Client
-import styles from "@styles/page.module.css";
 import "@styles/globals.css";
+import styles from "@styles/page.module.css";
 import { useEffect, useState } from "react";
 import PlayerCard from "@components/Player_Card.jsx";
 import calculateTotalStats from "@utils/totalStats.js";
 import MatchCard from "@/components/Match_Card";
-
+import Link from "next/link";
+import LayoutPage from "@/app/pages/layoutPage";
 
 export default function Home() {
   const [datas, setDatas] = useState([]);
@@ -26,32 +27,32 @@ export default function Home() {
         return res.json();
       })
       .then((data) => {
-        setDatas(data)
+        setDatas(data);
         setTotalStats(calculateTotalStats(data.playerMatches));
       })
       .catch((error) => console.error("Fetch error:", error));
   }, []);
 
-  
-  console.log(datas);
+  // console.log(datas);
 
   return (
-    <>
+    <LayoutPage>
 
-
-      <div className={styles.center}></div>
       <div className={styles.matches_grid}>
         {datas.matches &&
           Object(datas.matches).map((match) => (
-            <MatchCard
-              key={match.id}
-              team1_name={match.team1_name}
-              team2_name={match.team2_name}
-              team1_score={match.team1_score}
-              team2_score={match.team2_score}
-            />
-          ))
-        }
+            <Link href={`/pages/match/${match.id}`} key={match.id}>
+              <MatchCard
+                key={match.id}
+                id={match.id}
+                date={match.encounter_date}
+                team1_name={match.team1_name}
+                team2_name={match.team2_name}
+                team1_score={match.team1_score}
+                team2_score={match.team2_score}
+              />
+            </Link>
+          ))}
       </div>
 
       <div className={styles.players_grid}>
@@ -67,6 +68,6 @@ export default function Home() {
             />
           ))}
       </div>
-    </>
+    </LayoutPage>
   );
 }

@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 1rem 1.2rem;
-  border-radius: var(--border-radius);
+  border-radius: var(--b-radius-12);
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
@@ -35,7 +35,7 @@
 }
 .card_media {
   position: relative;
-  border-radius: 50%;
+  border-radius: var(--b-radius-50);
   margin: 0 auto;
 }
 .card_media_or {

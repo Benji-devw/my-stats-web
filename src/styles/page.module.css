@@ -1,8 +1,13 @@
-.code {
-  font-weight: 700;
-  font-family: var(--font-mono);
-}
 
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(100%, auto));
+  justify-content: center;
+  align-items: middle;
+  width: 90%;
+  text-align: center;
+}
 .matches_grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(25%, auto));
@@ -36,7 +41,7 @@
 .center::before {
   position: fixed;
   background: var(--secondary-glow);
-  border-radius: 50%;
+  border-radius: var(--b-radius-50);
   width: 480px;
   height: 360px;
   margin-left: -400px;

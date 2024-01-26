@@ -32,6 +32,9 @@ module.exports = {
       match_average: {
         type: Sequelize.REAL
       },
+      encounter_date: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

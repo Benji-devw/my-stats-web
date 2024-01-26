@@ -1,7 +1,5 @@
 import { Inter } from "next/font/google";
 import "@styles/globals.css";
-import styles from "@styles/layout.module.css";
-import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,34 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className={styles.main}>
-          <div className={styles.description}>
-            <p>
-              <code className={styles.code}>MY STATS</code>
-            </p>
-            <div>
-              <a
-                href="#"
-                // target="_blank"
-                rel="noopener noreferrer"
-              >
-                By{" "}
-                <Image
-                  src="/vercel.svg"
-                  alt="Vercel Logo"
-                  className={styles.vercelLogo}
-                  width={100}
-                  height={24}
-                  priority
-                />
-              </a>
-            </div>
-          </div>
-
-          {children}
-        </main>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
