@@ -9,11 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      player_id: {
-        allowNull: false,
-        autoIncrement: true,
-        type: Sequelize.INTEGER
-      },
+      // player_id: {
+      //   allowNull: false,
+      //   autoIncrement: true,
+      //   type: Sequelize.INTEGER
+      // },
       name: {
         type: Sequelize.TEXT
       },

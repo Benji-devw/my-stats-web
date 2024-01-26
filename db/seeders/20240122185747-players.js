@@ -5,7 +5,6 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert("Players", [
       {
-        player_id: 1,
         name: "Steph",
         media: "/medias/steph.jpg",
         team: "equipe_a",
@@ -17,7 +16,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        player_id: 2,
         name: "Tom",
         media: "/medias/tom.jpg",
         team: "equipe_a",
@@ -29,7 +27,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        player_id: 3,
         name: "Pedro",
         media: "/medias/pedro.jpg",
         team: "equipe_a",
@@ -41,7 +38,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        player_id: 4,
         name: "Quentin",
         media: "/medias/quentin.jpg",
         team: "equipe_a",
@@ -53,7 +49,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        player_id: 5,
         name: "Ben",
         media: "/medias/ben.jpg",
         team: "equipe_a",

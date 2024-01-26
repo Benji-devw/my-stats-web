@@ -11,10 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Players.belongsToMany(models.Matches, {
+        through: "PlayersMatches",
+        foreignKey: "player_id",
+      });
     }
   }
   Players.init({
-    player_id: DataTypes.INTEGER,
+    // player_id: DataTypes.INTEGER,
     name: DataTypes.TEXT,
     media: DataTypes.TEXT,
     team: DataTypes.TEXT,

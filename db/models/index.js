@@ -46,5 +46,7 @@ db.Sequelize = Sequelize;
 
 db.Matches = Matches(sequelize, Sequelize);
 db.Players = Players(sequelize, Sequelize);
+db.Matches.associate({ Players: db.Players });
+db.Players.associate({ Matches: db.Matches });
 
 module.exports = db;
