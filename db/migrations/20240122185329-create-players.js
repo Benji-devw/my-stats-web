@@ -3,16 +3,15 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Players', {
-      // id: {
-      //   allowNull: false,
-      //   autoIncrement: true,
-      //   primaryKey: true,
-      //   type: Sequelize.INTEGER
-      // },
-      player_id: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      player_id: {
+        allowNull: false,
+        autoIncrement: true,
         type: Sequelize.INTEGER
       },
       name: {
@@ -32,6 +31,9 @@ module.exports = {
       },
       player_average: {
         type: Sequelize.REAL
+      },
+      golden: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

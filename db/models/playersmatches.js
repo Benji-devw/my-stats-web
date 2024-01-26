@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   PlayersMatches.init(
     {
-      player_match_id: DataTypes.INTEGER,
+      // player_match_id: DataTypes.INTEGER,
       goals: DataTypes.INTEGER,
       assists: DataTypes.INTEGER,
       shoots: DataTypes.INTEGER,
