@@ -44,3 +44,34 @@ export async function POST(req, res) {
     return res.status(400).json({ message: "Unable to connect to the database:", error });
   }
 }
+
+// Add put method to update a player
+
+export async function PUT(req, res) {
+  try {
+    // Get the player ID from the request parameters
+    const playerId = res.params.id;
+
+    // Get the player from the database
+    const player = await db.Players.findByPk(playerId);
+
+    if (!player) {
+      return res.status(404).json({ message: "Player not found" });
+    }
+
+    // Get the updated data from the request body
+    const requestBody = await req.json();
+
+    // Update the player with the new data
+    const updatedPlayer = await player.update(requestBody);
+
+    // Return the updated player as a JSON response with status 200
+    return new Response(JSON.stringify({ updatedPlayer }), {
+      headers: { "Content-Type": "application/json" },
+      status: 200,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ message: "Unable to connect to the database:", error });
+  }
+}

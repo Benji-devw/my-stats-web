@@ -1,6 +1,6 @@
 "use client"
 
-//TODO: ADD AXIOS
+//TODO: ADD AXIOS for remove use Client
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";

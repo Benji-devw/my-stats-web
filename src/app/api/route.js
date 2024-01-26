@@ -5,7 +5,7 @@ db.sequelize.sync();
 export async function GET(req, res) {
   // Get all
   const matches = await db.Matches.findAll();
-  //TODO: Add sort player
+
   const players = await db.Players.findAll({
     order: [["player_average", "DESC"]],
   });
