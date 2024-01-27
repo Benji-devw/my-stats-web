@@ -10,13 +10,15 @@
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-
+  
+    --test: #e66e3fb0;
   --foreground-rgb: #fcfcfd;
   --background: #1c1c1c;
   --background-start-rgb: #1c1c1c;
   --background-end-rgb: #1c1c1c;
 
   --primary-60: #caff33;
+  --primary-t-60: #c9ff338c;
   --primary-70: #d8ff66;
   --primary-80: #e5ff99;
 
