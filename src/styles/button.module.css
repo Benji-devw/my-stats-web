@@ -5,5 +5,13 @@
   padding: .3rem .5rem;
   color: var(--background);
 
+  max-width: 400px;
+  margin: 1rem auto;
+
+  position: inherit;
+  z-index: 5;
+
+  cursor: pointer;
+
   box-shadow: var(--b-shadow-5);
 }

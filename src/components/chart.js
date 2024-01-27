@@ -53,8 +53,8 @@ const config = {
 };
 
 export default function StatsChart({ players }) {
-  console.log(players);
-  // map player datasets
+  // console.log(players);
+
   const test = players.map((player) => {
     return {
       label: player.name,

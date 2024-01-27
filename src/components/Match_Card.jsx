@@ -4,12 +4,13 @@ import Button from "@/components/Button";
 
 const MatchCard = ({
   date,
+  media_video,
   team1_name,
   team2_name,
   team1_score,
   team2_score,
 }) => {
-  // console.log(totalStats);
+  console.log(media_video);
   return (
     <div className={styles.card}>
       <h3 className={styles.card_title}>
@@ -20,16 +21,14 @@ const MatchCard = ({
           {team1_score} - {team2_score}
         </b>
       </h3>
-      <h2>
-        <span>-&gt;</span>
-      </h2>
+
+      {media_video ? (
+        <Button className={styles_button.button}>Voir le match sur NGTV</Button>
+      ) : (<h2><span>-&gt;</span> </h2>)}
+
       <code>
         Date: <b>{date}</b>
       </code>
-
-      {/* <p>
-        <Button className={styles_button.button}>Voir le match sur NGTV</Button>
-      </p> */}
     </div>
   );
 };
