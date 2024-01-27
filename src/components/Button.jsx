@@ -1,7 +1,7 @@
-// import "@styles/button.module.css";
+import styles_button from "@styles/button.module.css";
 
 const Button = ({ children, ...props }) => (
-  <button {...props}>
+  <button className={`${styles_button.button}`} {...props}>
     {children}
   </button>
 );
