@@ -8,6 +8,8 @@ import calculateTotalStats from "@utils/totalStats.js";
 import MatchCard from "@/components/Match_Card";
 import Link from "next/link";
 import LayoutPage from "@/app/pages/layoutPage";
+import Button from "@/components/Button";
+
 
 export default function Home() {
   const [datas, setDatas] = useState([]);
@@ -33,10 +35,14 @@ export default function Home() {
       .catch((error) => console.error("Fetch error:", error));
   }, []);
 
-  // console.log(datas);
 
   return (
     <LayoutPage>
+      <div className={""}>
+        <Button>
+          <Link href="/pages/match">Créer un match</Link>
+        </Button>
+      </div>
 
       <div className={styles.matches_grid}>
         {datas.matches &&

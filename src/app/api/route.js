@@ -1,5 +1,4 @@
-"use strict";
-const db = require("/db/models/index");
+import db from "../../../db/models/index.js";
 db.sequelize.sync();
 
 // Add get method to get all matches & players
@@ -11,7 +10,7 @@ export async function GET(req, res) {
     order: [["player_average", "DESC"]],
   });
 
-  const playerMatches = await db.Players_Matches.findAll();
+  const playerMatches = await db.PlayersMatches.findAll();
 
 
   // Return the matches and players as a JSON response with status 200
@@ -20,3 +19,5 @@ export async function GET(req, res) {
     status: 200,
   });
 }
+
+

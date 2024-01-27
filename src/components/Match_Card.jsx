@@ -10,7 +10,7 @@ const MatchCard = ({
   team1_score,
   team2_score,
 }) => {
-  console.log(media_video);
+  // console.log(media_video);
   return (
     <div className={styles.card}>
       <h3 className={styles.card_title}>
@@ -24,7 +24,7 @@ const MatchCard = ({
 
       {media_video ? (
         <Button className={styles_button.button}>Voir le match sur NGTV</Button>
-      ) : (<h2><span>-&gt;</span> </h2>)}
+      ) : (<h3><span>-&gt;</span> </h3>)}
 
       <code>
         Date: <b>{date}</b>

@@ -1,5 +1,5 @@
 "use strict";
-const db = require("/db/models/index");
+import db from "../../../../../db/models/index.js";
 db.sequelize.sync();
 
 export async function GET(req, res) {

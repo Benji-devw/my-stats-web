@@ -7,10 +7,10 @@ import styles from "@styles/page.module.css";
 import StatsChart from "@/components/chart";
 // import PlayerCard from "@/components/Player_Card.jsx";
 
+
 const MatchPage = () => {
   const params = useParams();
   const [match, setMatch] = useState(null);
-  // const [players, setPlayers] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -31,11 +31,8 @@ const MatchPage = () => {
         return res.json();
       })
       .then((data) => {
-        // console.log(data);
         // Set the match data
         setMatch(data.match);
-        // Add players data
-        // setPlayers(data.match.Players);
       })
 
       .catch((error) => {
@@ -72,6 +69,7 @@ const MatchPage = () => {
             </div>
 
             <div className={styles.chart}>
+              Filtrer les stats par joueur:
               <StatsChart players={match.Players} />
             </div>
 
