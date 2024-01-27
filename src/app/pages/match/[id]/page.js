@@ -4,10 +4,12 @@ import React, { useEffect, useState } from "react";
 import LayoutPage from "@/app/pages/layoutPage";
 import MatchCard from "@/components/Match_Card";
 import styles from "@styles/page.module.css";
+import StatsChart from "@/components/chart";
 
 const MatchPage = () => {
   const params = useParams();
   const [match, setMatch] = useState(null);
+  // const [players, setPlayers] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -28,9 +30,11 @@ const MatchPage = () => {
         return res.json();
       })
       .then((data) => {
-        // console.log(data);r
+        // console.log(data);
         // Set the match data
         setMatch(data.match);
+        // Add players data
+        // setPlayers(data.match.Players);
       })
 
       .catch((error) => {
@@ -41,7 +45,7 @@ const MatchPage = () => {
       });
   }, [params.id]);
 
-  console.log(match);
+  // console.log(players);
   return (
     <LayoutPage>
       <div className={styles.grid}>
@@ -65,7 +69,8 @@ const MatchPage = () => {
           />
           </div>
 
-          <div className="p-2 mb-4">
+          <div className={styles.chart}>
+            <StatsChart players={match.Players} />
             {/* <StatsTable players={match.players} params={params} /> */}
           </div>
         </>
