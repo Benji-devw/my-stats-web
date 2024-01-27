@@ -54,7 +54,7 @@ const PayerCard = ({
       <p>
         A été <b>{golden_old}</b> fois ballon d'or{" "}
       </p>
-      <h2><span>-&gt;</span></h2>
+      <h3><span>-&gt;</span></h3>
     </div>
   );
 };

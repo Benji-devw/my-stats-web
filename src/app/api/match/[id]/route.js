@@ -13,7 +13,7 @@ export async function GET(req, res) {
       include: {
         model: db.Players,
         attributes: ["id", "name", "media", "player_average", "golden"],
-        through: { model: db.playersmatches, attributes: ["goals", "shoots", "assists", "average"] },
+        through: { model: db.PlayersMatches, attributes: ["goals", "shoots", "assists", "average"] },
         // through: { attributes: [] }, // Exclude association table data
       },
     });
