@@ -16,15 +16,13 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const API_URL =
-    process.env.NODE_ENV === "production"
-      ? "https://my-stats-bis.vercel.app/api"
-      : "http://localhost:3000/api";
+    process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app/api" : "http://localhost:3000/api";
 
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    fetch("https://my-stats-bis.vercel.app/api", {
+    fetch(API_URL, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +56,7 @@ export default function Home() {
         <>
           <div className={""}>
             <Button>
-              <Link href="/pages/match">Créer un match</Link>
+              <Link href="/pages/match/post">Créer un match</Link>
             </Button>
           </div>
 

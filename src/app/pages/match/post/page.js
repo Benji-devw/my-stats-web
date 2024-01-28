@@ -9,7 +9,7 @@ const PostMatch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [new_id, setNew_Id] = useState(null);
-  const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app/' : 'http://localhost:3000/api';
+  const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app' : 'http://localhost:3000';
 
   useEffect(() => {
     setNew_Id(Math.floor(Math.random() * 99999));
@@ -18,7 +18,7 @@ const PostMatch = () => {
   // Add post mehtod
   const addMatch = async (match) => {
     try {
-      const res = await fetch(`https://my-stats-bis.vercel.app/api/match`, {
+      const res = await fetch(`${API_URL}/api/match/post`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,16 +32,17 @@ const PostMatch = () => {
 
       const data = await res.json();
       // console.log(data);
+
     } catch (error) {
       setError(`Fetch error: ${error.message}`);
     }
   };
 
-  const addPlayerMatch = async (playerMatch) => {
+  const addPlayerMatch = async (playersMatch) => {
     try {
-      for (const player of playerMatch) {
+      for (const player of playersMatch) {
         console.log(player);
-      const res = await fetch(`https://my-stats-bis.vercel.app/api/playersmatches`, {
+      const res = await fetch(`${API_URL}/api/playersmatches/post`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +75,7 @@ const PostMatch = () => {
       return;
     }
     
-    //TODO: defined team1_score by total player goals 
+    //TODO: change date
     const match = {
       id: new_id,
       media_video: e.target.media_video.value,
@@ -83,12 +84,13 @@ const PostMatch = () => {
       team1_score: e.target.team1_score.value,
       team2_score: e.target.team2_score.value,
       match_average: 0,
-      encounter_date: e.target.encounter_date.value + ' ' + e.target.encounter_time.value,
+      // encounter_date: e.target.encounter_date.value + ' ' + e.target.encounter_time.value,
+      encounter_date: new Date(),
       created_at: new Date(),
       updated_at: new Date(),
     };
 
-    const matchPlayers = [
+    const playersMatch = [
       {
         player_id: 1,
         match_id: new_id,
@@ -142,9 +144,9 @@ const PostMatch = () => {
     ]
 
     // console.log(match);
-    // console.log(matchPlayer);
-    await addMatch(match);
-    addPlayerMatch(matchPlayers);
+    console.log('playersMatch', playersMatch);
+    // await addMatch(match);
+    addPlayerMatch(playersMatch);
   };
 
   

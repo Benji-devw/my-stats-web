@@ -3,7 +3,7 @@ module.exports = {
   development: {
     username: process.env.DB_USER,
     password: null,
-    storage: "./test_collection.db",
+    storage: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: "sqlite",
   },
@@ -17,9 +17,9 @@ module.exports = {
   },
   production: {
     username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    storage: "./prod_collection.db",
-    host: "https://my-stats-bis.vercel.app",
+    password: null,
+    storage: process.env.DB_NAME,
+    host: process.env.DB_HOST,
     dialect: "sqlite",
     // dialectOptions: {
     //   ssl: true,

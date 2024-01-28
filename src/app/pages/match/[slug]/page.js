@@ -1,5 +1,5 @@
 "use client";
-import { useParams } from "next/navigation";
+import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from "react";
 import LayoutPage from "@/app/pages/layoutPage";
 import MatchCard from "@/components/Match_Card";
@@ -13,14 +13,16 @@ const MatchPage = () => {
   const [match, setMatch] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const API_URL =
+    process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app" : "http://localhost:3000";
 
-  console.log(params.id);
+  // console.log(params.slug);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    fetch(`https://my-stats-bis.vercel.app/api/match/${params.id}`, {
+    fetch(`${API_URL}/api/match/${params.slug}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -42,9 +44,9 @@ const MatchPage = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [params.id]);
+  }, []);
 
-  console.log(match);
+  // console.log(match);
   return (
     <LayoutPage>
       <div className={styles.grid}>
@@ -54,12 +56,12 @@ const MatchPage = () => {
           <h2 className="">Error: {error}</h2>
         ) : (
           <>
-            <h2>Match {params.id}</h2>
+            <h2>Match {params.slug}</h2>
 
             <div className={styles.match_page_grid}>
               <MatchCard
-                key={params.id}
-                id={params.id}
+                key={params.slug}
+                id={params.slug}
                 date={match.encounter_date}
                 media_video={match.media_video}
                 team1_name={match.team1_name}
@@ -77,12 +79,12 @@ const MatchPage = () => {
             {/* <div className={styles.players_grid}>
               {Object(match.Players).map((player) => (
                   <PlayerCard
-                    key={player.id}
+                    key={player.slug}
                     name={player.name}
                     media={player.media}
                     golden={player.golden}
                     golden_old={player.golden_old}
-                    totalStats={totalStats ? totalStats[player.id] : []} // Add totalStats by id
+                    totalStats={totalStats ? totalStats[player.slug] : []} // Add totalStats by id
                   />
                 ))}
             </div> */}
