@@ -19,7 +19,7 @@ module.exports = {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     storage: "./prod_collection.db",
-    host: process.env.DB_HOST,
+    host: "https://my-stats-bis.vercel.app",
     dialect: "sqlite",
     // dialectOptions: {
     //   ssl: true,
