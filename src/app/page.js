@@ -24,7 +24,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
 
-    fetch("https://my-stats-bis.vercel.app", {
+    fetch("https://my-stats-bis.vercel.app/api", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
