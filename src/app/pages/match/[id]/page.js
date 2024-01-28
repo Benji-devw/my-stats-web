@@ -34,7 +34,6 @@ const MatchPage = () => {
         // Set the match data
         setMatch(data.match);
       })
-
       .catch((error) => {
         setError(`Fetch error: ${error.message}`);
       })
