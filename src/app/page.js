@@ -17,7 +17,7 @@ export default function Home() {
   const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app/api' : 'http://localhost:3000/api';
 
   useEffect(() => {
-    fetch('https://my-stats-bis.vercel.app/api', {
+    fetch('https://my-stats-bis.vercel.app', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
