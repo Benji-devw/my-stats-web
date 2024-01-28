@@ -1,5 +1,5 @@
 "use strict";
-import db from "../../../../../db/models/index.js";
+import db from "../../../../db/models/index.js";
 // const db = require("./db/models/index.js");
 db.sequelize.sync();
 
