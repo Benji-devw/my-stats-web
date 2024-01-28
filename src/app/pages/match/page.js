@@ -9,6 +9,7 @@ const PostMatch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [new_id, setNew_Id] = useState(null);
+  const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app/' : 'http://localhost:3000/api';
 
   useEffect(() => {
     setNew_Id(Math.floor(Math.random() * 99999));
@@ -17,7 +18,7 @@ const PostMatch = () => {
   // Add post mehtod
   const addMatch = async (match) => {
     try {
-      const res = await fetch("http://localhost:3000/api/match/route", {
+      const res = await fetch(`${API_URL}/api/match/route`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +41,7 @@ const PostMatch = () => {
     try {
       for (const player of playerMatch) {
         console.log(player);
-      const res = await fetch("http://localhost:3000/api/playersmatches", {
+      const res = await fetch(`${API_URL}/api/playersmatches`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
