@@ -16,7 +16,7 @@ export default function Home() {
   const [totalStats, setTotalStats] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api`, {
+    fetch(`https://my-api.vercel.app/api`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
