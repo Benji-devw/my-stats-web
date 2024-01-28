@@ -60,8 +60,19 @@ const PostMatch = () => {
     }
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (parseInt(e.target.steph_goals.value) > parseInt(e.target.steph_shoots.value) ||
+      parseInt(e.target.tom_goals.value) > parseInt(e.target.tom_shoots.value) ||
+      parseInt(e.target.pedro_goals.value) > parseInt(e.target.pedro_shoots.value) ||
+      parseInt(e.target.quentin_goals.value) > parseInt(e.target.quentin_shoots.value) ||
+      parseInt(e.target.ben_goals.value) > parseInt(e.target.ben_shoots.value)) {
+      alert('Les buts ne peuvent pas être supérieurs aux tirs');  
+      return;
+    }
+    
     //TODO: defined team1_score by total player goals 
     const match = {
       id: new_id,
@@ -83,7 +94,7 @@ const PostMatch = () => {
         goals: e.target.steph_goals.value,
         assists: e.target.steph_assists.value,
         shoots: e.target.steph_shoots.value,
-        average: (e.target.steph_goals.value + e.target.steph_shoots.value) / 2,
+        average: (10 * e.target.steph_goals.value / e.target.steph_shoots.value).toFixed(1),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -93,7 +104,7 @@ const PostMatch = () => {
         goals: e.target.tom_goals.value,
         assists: e.target.tom_assists.value,
         shoots: e.target.tom_shoots.value,
-        average: (e.target.tom_goals.value + e.target.tom_shoots.value) / 2,
+        average: (10 * e.target.tom_goals.value / e.target.tom_shoots.value).toFixed(1),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -103,7 +114,7 @@ const PostMatch = () => {
         goals: e.target.pedro_goals.value,
         assists: e.target.pedro_assists.value,
         shoots: e.target.pedro_shoots.value,
-        average: (e.target.pedro_goals.value + e.target.pedro_shoots.value) / 2,
+        average: (10 * e.target.pedro_goals.value / e.target.pedro_shoots.value).toFixed(1),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -113,7 +124,7 @@ const PostMatch = () => {
         goals: e.target.quentin_goals.value,
         assists: e.target.quentin_assists.value,
         shoots: e.target.quentin_shoots.value,
-        average: (e.target.quentin_goals.value + e.target.quentin_shoots.value) / 2,
+        average: (10 * e.target.quentin_goals.value / e.target.quentin_shoots.value).toFixed(1),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -123,7 +134,7 @@ const PostMatch = () => {
         goals: e.target.ben_goals.value,
         assists: e.target.ben_assists.value,
         shoots: e.target.ben_shoots.value,
-        average: (e.target.ben_goals.value + e.target.ben_shoots.value) / 2,
+        average: (10 * e.target.ben_goals.value / e.target.ben_shoots.value).toFixed(1),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -147,14 +158,14 @@ const PostMatch = () => {
             <h2 className="">Error: {error}</h2>
           ) : (
           <>
-            <h2>Création Match:</h2>
+            <h2>Création Match :</h2>
 
             {/* <div className={styles.form}> */}
             <form  onSubmit={handleSubmit}>
               <div className={`${styles.form} ${styles.form_flex}`}>
-                <h3>Match</h3>
+              <h3 className={styles.form_page_title}><b>Match</b></h3>
 
-                {/* <label htmlFor="media_video">Lien vidéo</label> */}
+                <label htmlFor="media_video">Lien NGTV</label>
                 <input type="text" name="media_video" id="media_video" defaultValue={"https://www.youtube.com/watch?v=Q5mHPo2yDG8"}/>
 
                 {/* <label htmlFor="team1_name">Nom de l'équipe 1</label> */}
@@ -163,7 +174,7 @@ const PostMatch = () => {
                 {/* <label htmlFor="team2_name">Nom de l'équipe 2</label> */}
                 <input type="text" name="team2_name" id="team2_name" defaultValue={"Team B"}/>
 
-                <label htmlFor="team1_score">Score de Team B</label>
+                <label htmlFor="team1_score">Score de Team A</label>
                 <input type="number" name="team1_score" id="team1_score" defaultValue={7}/>
 
                 <label htmlFor="team2_score">Score de Team B</label>
@@ -176,35 +187,44 @@ const PostMatch = () => {
                 <input type="time" name="encounter_time" id="encounter_time" defaultValue="12:12"/>
               </div>
 
-              <h3>Quentin</h3>
-              <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="quentin_goals" id="goals" placeholder="Buts" defaultValue={4}/>
-                <input type="number" name="quentin_assists" id="assists" placeholder="PassesD"defaultValue={3}/>
-                <input type="number" name="quentin_shoots" id="shoots" placeholder="Tirs"defaultValue={3}/>
+              <h3 className={styles.form_page_title}><b>Joueurs</b></h3>
+              <div className={` ${styles.form_flex}`}>
+
+                <div className={`${styles.form} ${styles.form_grid}`}>
+                <label htmlFor="">Buts</label>
+                <label htmlFor="">Passes D</label>
+                <label htmlFor="">Tirs</label>
               </div>
               <h3>Steph</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="steph_goals" id="goals" placeholder="Buts"defaultValue={1}/>
-                <input type="number" name="steph_assists" id="assists" placeholder="PassesD"defaultValue={3}/>
-                <input type="number" name="steph_shoots" id="shoots" placeholder="Tirs"defaultValue={5}/>
+                <input type="number" name="steph_goals" id="goals" placeholder="Buts"defaultValue={1} />
+                <input type="number" name="steph_assists" id="assists" placeholder="PassesD"defaultValue={3} />
+                <input type="number" name="steph_shoots" id="shoots" placeholder="Tirs"defaultValue={5} />
               </div>
               <h3>Tom</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="tom_goals" id="goals" placeholder="Buts"defaultValue={3}/>
-                <input type="number" name="tom_assists" id="assists" placeholder="PassesD"defaultValue={3}/>
-                <input type="number" name="tom_shoots" id="shoots" placeholder="Tirs"defaultValue={4}/>
+                <input type="number" name="tom_goals" id="goals" placeholder="Buts"defaultValue={3} />
+                <input type="number" name="tom_assists" id="assists" placeholder="PassesD"defaultValue={3} />
+                <input type="number" name="tom_shoots" id="shoots" placeholder="Tirs"defaultValue={4} />
               </div>
               <h3>Pedro</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="pedro_goals" id="goals" placeholder="Buts"defaultValue={4}/>
-                <input type="number" name="pedro_assists" id="assists" placeholder="PassesD"defaultValue={3}/>
-                <input type="number" name="pedro_shoots" id="shoots" placeholder="Tirs"defaultValue={11}/>
+                <input type="number" name="pedro_goals" id="goals" placeholder="Buts"defaultValue={4} />
+                <input type="number" name="pedro_assists" id="assists" placeholder="PassesD"defaultValue={3} />
+                <input type="number" name="pedro_shoots" id="shoots" placeholder="Tirs"defaultValue={11} />
+              </div>
+              <h3>Quentin</h3>
+              <div className={`${styles.form} ${styles.form_grid}`}>
+                <input type="number" name="quentin_goals" id="goals" placeholder="Buts" defaultValue={4} />
+                <input type="number" name="quentin_assists" id="assists" placeholder="PassesD"defaultValue={3} />
+                <input type="number" name="quentin_shoots" id="shoots" placeholder="Tirs"defaultValue={6} />
               </div>
               <h3>Ben</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="ben_goals" id="goals" placeholder="Buts"defaultValue={13}/>
-                <input type="number" name="ben_assists" id="assists" placeholder="PassesD"defaultValue={3}/>
-                <input type="number" name="ben_shoots" id="shoots" placeholder="Tirs"defaultValue={14}/>
+                <input type="number" name="ben_goals" id="goals" placeholder="Buts"defaultValue={12} />
+                <input type="number" name="ben_assists" id="assists" placeholder="PassesD"defaultValue={3} />
+                <input type="number" name="ben_shoots" id="shoots" placeholder="Tirs"defaultValue={14} />
+              </div>
               </div>
 
               <Button type="submit" value="Envoyer">
