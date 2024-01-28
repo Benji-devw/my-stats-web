@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import styles from "@styles/player_card.module.css";
 import Image from "next/image";
 import Link from "next/link";
