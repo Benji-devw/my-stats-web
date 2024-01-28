@@ -176,16 +176,16 @@ const PostMatch = () => {
                 <input type="text" name="team2_name" id="team2_name" defaultValue={"Team B"}/>
 
                 <label htmlFor="team1_score">Score de Team A</label>
-                <input type="number" name="team1_score" id="team1_score" defaultValue={7}/>
+                <input type="number" name="team1_score" id="team1_score"/>
 
                 <label htmlFor="team2_score">Score de Team B</label>
-                <input type="number" name="team2_score" id="team2_score" defaultValue={11}/>
+                <input type="number" name="team2_score" id="team2_score"/>
 
                 <label htmlFor="encounter_date">Date de la rencontre</label>
-                <input type="date" name="encounter_date" id="encounter_date" defaultValue="2024-01-27"/>
+                <input type="date" name="encounter_date" id="encounter_date"/>
 
                 <label htmlFor="encounter_time">Heure de la rencontre</label>
-                <input type="time" name="encounter_time" id="encounter_time" defaultValue="12:12"/>
+                <input type="time" name="encounter_time" id="encounter_time"/>
               </div>
 
               <h3 className={styles.form_page_title}><b>Joueurs</b></h3>
@@ -198,33 +198,33 @@ const PostMatch = () => {
               </div>
               <h3>Steph</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="steph_goals" id="goals" placeholder="Buts"defaultValue={1} />
-                <input type="number" name="steph_assists" id="assists" placeholder="PassesD"defaultValue={3} />
-                <input type="number" name="steph_shoots" id="shoots" placeholder="Tirs"defaultValue={5} />
+                <input type="number" name="steph_goals" id="goals" placeholder="Buts" />
+                <input type="number" name="steph_assists" id="assists" placeholder="PassesD" />
+                <input type="number" name="steph_shoots" id="shoots" placeholder="Tirs" />
               </div>
               <h3>Tom</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="tom_goals" id="goals" placeholder="Buts"defaultValue={3} />
-                <input type="number" name="tom_assists" id="assists" placeholder="PassesD"defaultValue={3} />
-                <input type="number" name="tom_shoots" id="shoots" placeholder="Tirs"defaultValue={4} />
+                <input type="number" name="tom_goals" id="goals" placeholder="Buts" />
+                <input type="number" name="tom_assists" id="assists" placeholder="PassesD" />
+                <input type="number" name="tom_shoots" id="shoots" placeholder="Tirs" />
               </div>
               <h3>Pedro</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="pedro_goals" id="goals" placeholder="Buts"defaultValue={4} />
-                <input type="number" name="pedro_assists" id="assists" placeholder="PassesD"defaultValue={3} />
-                <input type="number" name="pedro_shoots" id="shoots" placeholder="Tirs"defaultValue={11} />
+                <input type="number" name="pedro_goals" id="goals" placeholder="Buts"/>
+                <input type="number" name="pedro_assists" id="assists" placeholder="PassesD"/>
+                <input type="number" name="pedro_shoots" id="shoots" placeholder="Tirs"/>
               </div>
               <h3>Quentin</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="quentin_goals" id="goals" placeholder="Buts" defaultValue={4} />
-                <input type="number" name="quentin_assists" id="assists" placeholder="PassesD"defaultValue={3} />
-                <input type="number" name="quentin_shoots" id="shoots" placeholder="Tirs"defaultValue={6} />
+                <input type="number" name="quentin_goals" id="goals" placeholder="Buts"  />
+                <input type="number" name="quentin_assists" id="assists" placeholder="PassesD"/>
+                <input type="number" name="quentin_shoots" id="shoots" placeholder="Tirs" />
               </div>
               <h3>Ben</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="ben_goals" id="goals" placeholder="Buts"defaultValue={12} />
-                <input type="number" name="ben_assists" id="assists" placeholder="PassesD"defaultValue={3} />
-                <input type="number" name="ben_shoots" id="shoots" placeholder="Tirs"defaultValue={14} />
+                <input type="number" name="ben_goals" id="goals" placeholder="Buts" />
+                <input type="number" name="ben_assists" id="assists" placeholder="PassesD"/>
+                <input type="number" name="ben_shoots" id="shoots" placeholder="Tirs" />
               </div>
               </div>
 

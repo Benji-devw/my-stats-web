@@ -1,5 +1,6 @@
 "use strict";
 import db from "../../../../../db/models/index.js";
+// const db = require("./db/models/index.js");
 db.sequelize.sync();
 
 // Add get method to get all matches
