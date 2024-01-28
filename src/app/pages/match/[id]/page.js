@@ -18,7 +18,7 @@ const MatchPage = () => {
     setLoading(true);
     setError(null);
 
-    fetch(`http://localhost:3000/api/match/${params.id}`, {
+    fetch(`https://my-stats-bis.vercel.app/api/match/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
