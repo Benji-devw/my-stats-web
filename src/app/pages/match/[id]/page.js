@@ -14,11 +14,13 @@ const MatchPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  console.log(params.id);
+
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    fetch(`https://my-stats-bis.vercel.app/page/match/${params.id}`, {
+    fetch(`https://my-stats-bis.vercel.app/api/match/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

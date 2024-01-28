@@ -21,8 +21,8 @@ module.exports = {
     storage: "./prod_collection.db",
     host: process.env.DB_HOST,
     dialect: "sqlite",
-    dialectOptions: {
-      ssl: true,
-    },
+    // dialectOptions: {
+    //   ssl: true,
+    // },
   },
 };
