@@ -14,10 +14,10 @@ import Button from "@/components/Button";
 export default function Home() {
   const [datas, setDatas] = useState([]);
   const [totalStats, setTotalStats] = useState(null);
-  const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app/' : 'http://localhost:3000/api';
+  const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app/api' : 'http://localhost:3000/api';
 
   useEffect(() => {
-    fetch(API_URL, {
+    fetch('https://my-stats-bis.vercel.app/api', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -18,7 +18,7 @@ const PostMatch = () => {
   // Add post mehtod
   const addMatch = async (match) => {
     try {
-      const res = await fetch(`${API_URL}/api/match/route`, {
+      const res = await fetch(`https://my-stats-bis.vercel.app/api/match/route`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const PostMatch = () => {
     try {
       for (const player of playerMatch) {
         console.log(player);
-      const res = await fetch(`${API_URL}/api/playersmatches`, {
+      const res = await fetch(`https://my-stats-bis.vercel.app/api/playersmatches`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
