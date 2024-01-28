@@ -14,6 +14,7 @@ import Button from "@/components/Button";
 export default function Home() {
   const [datas, setDatas] = useState([]);
   const [totalStats, setTotalStats] = useState(null);
+  const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-api.vercel.app/api' : 'http://localhost:3000/api';
 
   useEffect(() => {
     fetch(`https://my-api.vercel.app/api`, {
