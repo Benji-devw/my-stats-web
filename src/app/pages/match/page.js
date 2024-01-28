@@ -62,6 +62,7 @@ const PostMatch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //TODO: defined team1_score by total player goals 
     const match = {
       id: new_id,
       media_video: e.target.media_video.value,
@@ -177,33 +178,33 @@ const PostMatch = () => {
 
               <h3>Quentin</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="quentin_goals" id="goals" placeholder="Buts" defaultValue={3}/>
+                <input type="number" name="quentin_goals" id="goals" placeholder="Buts" defaultValue={4}/>
                 <input type="number" name="quentin_assists" id="assists" placeholder="PassesD"defaultValue={3}/>
                 <input type="number" name="quentin_shoots" id="shoots" placeholder="Tirs"defaultValue={3}/>
               </div>
               <h3>Steph</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="steph_goals" id="goals" placeholder="Buts"defaultValue={3}/>
+                <input type="number" name="steph_goals" id="goals" placeholder="Buts"defaultValue={1}/>
                 <input type="number" name="steph_assists" id="assists" placeholder="PassesD"defaultValue={3}/>
-                <input type="number" name="steph_shoots" id="shoots" placeholder="Tirs"defaultValue={3}/>
+                <input type="number" name="steph_shoots" id="shoots" placeholder="Tirs"defaultValue={5}/>
               </div>
               <h3>Tom</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
                 <input type="number" name="tom_goals" id="goals" placeholder="Buts"defaultValue={3}/>
                 <input type="number" name="tom_assists" id="assists" placeholder="PassesD"defaultValue={3}/>
-                <input type="number" name="tom_shoots" id="shoots" placeholder="Tirs"defaultValue={3}/>
+                <input type="number" name="tom_shoots" id="shoots" placeholder="Tirs"defaultValue={4}/>
               </div>
               <h3>Pedro</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="pedro_goals" id="goals" placeholder="Buts"defaultValue={3}/>
+                <input type="number" name="pedro_goals" id="goals" placeholder="Buts"defaultValue={4}/>
                 <input type="number" name="pedro_assists" id="assists" placeholder="PassesD"defaultValue={3}/>
-                <input type="number" name="pedro_shoots" id="shoots" placeholder="Tirs"defaultValue={3}/>
+                <input type="number" name="pedro_shoots" id="shoots" placeholder="Tirs"defaultValue={11}/>
               </div>
               <h3>Ben</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="ben_goals" id="goals" placeholder="Buts"defaultValue={3}/>
+                <input type="number" name="ben_goals" id="goals" placeholder="Buts"defaultValue={13}/>
                 <input type="number" name="ben_assists" id="assists" placeholder="PassesD"defaultValue={3}/>
-                <input type="number" name="ben_shoots" id="shoots" placeholder="Tirs"defaultValue={3}/>
+                <input type="number" name="ben_shoots" id="shoots" placeholder="Tirs"defaultValue={14}/>
               </div>
 
               <Button type="submit" value="Envoyer">

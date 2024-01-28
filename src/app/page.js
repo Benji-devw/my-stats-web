@@ -51,6 +51,7 @@ export default function Home() {
               <MatchCard
                 key={match.id}
                 id={match.id}
+                // media_video={match.media_video}
                 date={match.encounter_date}
                 team1_name={match.team1_name}
                 team2_name={match.team2_name}

@@ -1,6 +1,7 @@
 import styles from "@styles/match_card.module.css";
 import styles_button from "@styles/button.module.css";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 const MatchCard = ({
   date,
@@ -23,7 +24,9 @@ const MatchCard = ({
       </h3>
 
       {media_video ? (
-        <Button className={styles_button.button}>Voir le match sur NGTV</Button>
+        <Button className={styles_button.button}>
+          <Link href={media_video}>Voir le match sur NGTV </Link>
+        </Button>
       ) : (<h3><span>-&gt;</span> </h3>)}
 
       <code>
