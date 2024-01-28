@@ -3,7 +3,7 @@ module.exports = {
   development: {
     username: process.env.DB_USER,
     password: null,
-    storage: "./new_collection.db",
+    storage: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: "sqlite",
   },
