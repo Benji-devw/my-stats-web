@@ -145,7 +145,7 @@ const PostMatch = () => {
 
     // console.log(match);
     console.log('playersMatch', playersMatch);
-    // await addMatch(match);
+    await addMatch(match);
     addPlayerMatch(playersMatch);
   };
 

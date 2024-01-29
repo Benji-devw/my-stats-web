@@ -1,4 +1,4 @@
-import db from "../../../db/models/index.js";
+import db from "/db/models/index.js";
 db.sequelize.sync();
 
 // Add get method to get all matches & players

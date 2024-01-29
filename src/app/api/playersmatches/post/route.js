@@ -1,5 +1,5 @@
 "use strict";
-import db from "../../../../../db/models/index.js";
+import db from "/db/models/index.js";
 db.sequelize.sync();
 
 // Add post method to create a new playermatch

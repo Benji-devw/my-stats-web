@@ -24,6 +24,13 @@ experimental: {
   },
 ```
 
+- Add to .env
+```json
+NODE_ENV=development
+DB_NAME=./test_collection.db
+DB_HOST=127.0.0.1
+```
+
 First, run the development server:
 
 ```bash
