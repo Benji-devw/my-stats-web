@@ -1,8 +1,9 @@
 .button {
   background-color: var(--primary-60);
   border: 1px solid var(--background);
-  border-radius: var(--b-radius-16);
-  padding: .3rem .5rem;
+  border-radius: var(--b-radius-26);
+  padding: .6rem 1rem;
+  font-size: 1.1rem;
   color: var(--background);
 
   max-width: 400px;
@@ -13,4 +14,10 @@
   cursor: pointer;
 
   box-shadow: var(--b-shadow-5);
+  transition: all .2s ease-in-out;
+}
+
+.button:hover {
+  background-color: var(--primary-80);
+  transform: scale(1.1);
 }
