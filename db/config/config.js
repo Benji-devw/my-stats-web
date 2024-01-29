@@ -1,28 +1,32 @@
 'use strict';
 module.exports = {
   development: {
-    username: process.env.DB_USER,
-    password: null,
-    storage: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    dialect: "sqlite",
+    username: "navart",
+    password: "admin&&",
+    database: "my-stats-bis",
+    host: "127.0.0.1",
+    dialect: "postgres",
+    port: process.env.DB_PORT || 5432,
   },
   test: {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
-    storage: process.env.DB_NAME,
+    database: process.env.DB_NAME,
     host: process.env.DB_HOST,
-    dialect: "sqlite",
+    dialect: "postgres",
     logging: false,
   },
   production: {
     username: process.env.DB_USER,
     password: null,
-    storage: process.env.DB_NAME,
+    database: process.env.DB_NAME,
     host: process.env.DB_HOST,
-    dialect: "sqlite",
-    // dialectOptions: {
-    //   ssl: true,
-    // },
+    dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    },
   },
 };
