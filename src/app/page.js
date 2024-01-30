@@ -16,7 +16,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const API_URL =
-    process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app/api" : "http://localhost:3000/api";
+    process.env.NODE_ENV === "production" ? "postgres://<DB_USER>:<DB_PASSWORD>@ep-misty-forest-a2o7fsod-pooler.eu-central-1.postgres.vercel-storage.com:5432/verceldb/api" : "http://localhost:3000/api";
 
   useEffect(() => {
     setLoading(true);
