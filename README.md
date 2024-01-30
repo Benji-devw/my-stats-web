@@ -2,6 +2,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+### With Postgres in Vercel Create database:
+```bash
+connect to postgres with POSTGRES_URL
+CREATE DATABASE dbname;
+CREATE ROLE username WITH LOGIN PASSWORD 'password'; 
+ALTER ROLE username CREATEDB; -- for autorized role to create db
+ALTER DATABASE "dbname" OWNER TO username; -- for autorized role to create tables
+```
+
 ### With Sequelize Create SQLite database:
 ```bash
 // node connect.js
