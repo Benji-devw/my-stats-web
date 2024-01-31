@@ -10,8 +10,8 @@ const PostMatch = () => {
   const [error, setError] = useState(null);
   const [new_id, setNew_Id] = useState(null);
   const [totalGoals, setTotalGoals] = useState(0);
-  const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app' : 'http://localhost:3000';
   const [prevGoals, setPrevGoals] = useState({ steph_goals: 0, tom_goals: 0, pedro_goals: 0, quentin_goals: 0, ben_goals: 0});
+  const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app' : 'http://localhost:3000';
 
   useEffect(() => {
     setNew_Id(Math.floor(Math.random() * 99999));
@@ -91,7 +91,7 @@ const PostMatch = () => {
       team1_name: e.target.team1_name.value,
       team2_name: e.target.team2_name.value,
       // team1_score: Number(e.target.steph_goals.value) + Number(e.target.tom_goals.value) + Number(e.target.pedro_goals.value) + Number(e.target.quentin_goals.value) + Number(e.target.ben_goals.value),
-      team1_score: prevGoals,
+      team1_score: Number(prevGoals),
       team2_score: e.target.team2_score.value,
       match_average: 0,
       // encounter_date: e.target.encounter_date.value + ' ' + e.target.encounter_time.value,
