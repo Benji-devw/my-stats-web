@@ -1,4 +1,5 @@
 'use strict';
+import pg from "pg";
 module.exports = {
   development: {
     username: "navart",
@@ -16,7 +17,7 @@ module.exports = {
     dialect: "postgres",
     logging: false,
   },
-  production: {
+  production: { 
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     dialectModule: pg,
