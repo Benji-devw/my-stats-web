@@ -10,6 +10,9 @@ import Link from "next/link";
 import LayoutPage from "@/app/pages/layoutPage";
 import Add_Button from "@/components/Add_Button";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function Home() {
   const [datas, setDatas] = useState([]);
   const [totalStats, setTotalStats] = useState([]);
@@ -21,7 +24,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
 
-    fetch(`${API_URL}/api`, { cache: 'no-store' }, {
+    fetch(`${API_URL}/api`, {next: { revalidate: 0}}, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
