@@ -21,7 +21,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
 
-    fetch(`${API_URL}/api`, {
+    fetch(`${API_URL}/api`, { cache: 'no-store' }, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
