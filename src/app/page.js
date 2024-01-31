@@ -8,7 +8,7 @@ import calculateTotalStats from "@utils/totalStats.js";
 import MatchCard from "@/components/Match_Card";
 import Link from "next/link";
 import LayoutPage from "@/app/pages/layoutPage";
-import Button from "@/components/Button";
+import Add_Button from "@/components/Add_Button";
 
 export default function Home() {
   const [datas, setDatas] = useState([]);
@@ -53,13 +53,8 @@ export default function Home() {
         <h2 className="">Error: {error}</h2>
       ) : (
         <>
-          <div className={""}>
-            <Button>
-              <Link href="/pages/match/post">Créer un match</Link>
-            </Button>
-          </div>
-
           <div className={styles.matches_grid}>
+            <Link href="/pages/match/post"><Add_Button> + </Add_Button></Link>
             {datas.matches &&
               Object(datas.matches).map((match) => (
                 <Link href={`/pages/match/${match.id}`} key={match.id}>
@@ -89,6 +84,7 @@ export default function Home() {
                   totalStats={totalStats ? totalStats[player.id] : []} // Add totalStats by id
                 />
               ))}
+              <Add_Button> + </Add_Button>
           </div>
         </>
       )}

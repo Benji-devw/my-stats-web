@@ -9,11 +9,20 @@ const PostMatch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [new_id, setNew_Id] = useState(null);
+  const [totalGoals, setTotalGoals] = useState(0);
   const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app' : 'http://localhost:3000';
+  const [prevGoals, setPrevGoals] = useState({ steph_goals: 0, tom_goals: 0, pedro_goals: 0, quentin_goals: 0, ben_goals: 0});
 
   useEffect(() => {
     setNew_Id(Math.floor(Math.random() * 99999));
   }, []);
+
+  const handleGoalsChange = (e, player) => {
+    const newGoals = Number(e.target.value);
+    const diff = newGoals - prevGoals[player];
+    setTotalGoals(totalGoals + diff);
+    setPrevGoals({ ...prevGoals, [player]: newGoals });
+  };
 
   // Add post mehtod
   const addMatch = async (match) => {
@@ -55,7 +64,7 @@ const PostMatch = () => {
       }
       
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
     }
     } catch (error) {
       setError(`Fetch error: ${error.message}`);
@@ -81,7 +90,8 @@ const PostMatch = () => {
       media_video: e.target.media_video.value,
       team1_name: e.target.team1_name.value,
       team2_name: e.target.team2_name.value,
-      team1_score: e.target.team1_score.value,
+      // team1_score: Number(e.target.steph_goals.value) + Number(e.target.tom_goals.value) + Number(e.target.pedro_goals.value) + Number(e.target.quentin_goals.value) + Number(e.target.ben_goals.value),
+      team1_score: prevGoals,
       team2_score: e.target.team2_score.value,
       match_average: 0,
       // encounter_date: e.target.encounter_date.value + ' ' + e.target.encounter_time.value,
@@ -172,16 +182,16 @@ const PostMatch = () => {
                 <input type="text" name="media_video" id="media_video" defaultValue={"https://www.youtube.com/watch?v=Q5mHPo2yDG8"}/>
 
                 {/* <label htmlFor="team1_name">Nom de l'équipe 1</label> */}
-                <input type="text" name="team1_name" id="team1_name" defaultValue={"Team A"}/>
+                <input type="text" name="team1_name" id="team1_name" defaultValue={"Team A"} />
 
                 {/* <label htmlFor="team2_name">Nom de l'équipe 2</label> */}
                 <input type="text" name="team2_name" id="team2_name" defaultValue={"Team B"}/>
 
                 <label htmlFor="team1_score">Score de Team A</label>
-                <input type="number" name="team1_score" id="team1_score" defaultValue={7}/>
+                <input type="number" name="team1_score" id="team1_score" min={0} defaultValue={totalGoals} disabled />
 
                 <label htmlFor="team2_score">Score de Team B</label>
-                <input type="number" name="team2_score" id="team2_score" defaultValue={11}/>
+                <input type="number" name="team2_score" id="team2_score" min={0} defaultValue={11}/>
 
                 <label htmlFor="encounter_date">Date de la rencontre</label>
                 <input type="date" name="encounter_date" id="encounter_date" defaultValue="2024-01-27"/>
@@ -200,33 +210,33 @@ const PostMatch = () => {
               </div>
               <h3>Steph</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="steph_goals" id="goals" placeholder="Buts"defaultValue={1} />
-                <input type="number" name="steph_assists" id="assists" placeholder="PassesD"defaultValue={3} />
-                <input type="number" name="steph_shoots" id="shoots" placeholder="Tirs"defaultValue={5} />
+                <input type="number" min={0} name="steph_goals" id="goals" placeholder="Buts" defaultValue={1} onChange={(e) => handleGoalsChange(e, 'steph_goals')}/>
+                <input type="number" min={0} name="steph_assists" id="assists" placeholder="PassesD" defaultValue={3} />
+                <input type="number" min={0} name="steph_shoots" id="shoots" placeholder="Tirs" defaultValue={5} />
               </div>
               <h3>Tom</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="tom_goals" id="goals" placeholder="Buts"defaultValue={3} />
-                <input type="number" name="tom_assists" id="assists" placeholder="PassesD"defaultValue={3} />
-                <input type="number" name="tom_shoots" id="shoots" placeholder="Tirs"defaultValue={4} />
+                <input type="number" min={0} name="tom_goals" id="goals" placeholder="Buts" defaultValue={3} onChange={(e) => handleGoalsChange(e, 'tom_goals')}/>
+                <input type="number" min={0} name="tom_assists" id="assists" placeholder="PassesD" defaultValue={3} />
+                <input type="number" min={0} name="tom_shoots" id="shoots" placeholder="Tirs" defaultValue={4} />
               </div>
               <h3>Pedro</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="pedro_goals" id="goals" placeholder="Buts"defaultValue={4} />
-                <input type="number" name="pedro_assists" id="assists" placeholder="PassesD"defaultValue={3} />
-                <input type="number" name="pedro_shoots" id="shoots" placeholder="Tirs"defaultValue={11} />
+                <input type="number" min={0} name="pedro_goals" id="goals" placeholder="Buts" defaultValue={4} onChange={(e) => handleGoalsChange(e, 'pedro_goals')}/>
+                <input type="number" min={0} name="pedro_assists" id="assists" placeholder="PassesD" defaultValue={3} />
+                <input type="number" min={0} name="pedro_shoots" id="shoots" placeholder="Tirs" defaultValue={11} />
               </div>
               <h3>Quentin</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="quentin_goals" id="goals" placeholder="Buts" defaultValue={4} />
-                <input type="number" name="quentin_assists" id="assists" placeholder="PassesD"defaultValue={3} />
-                <input type="number" name="quentin_shoots" id="shoots" placeholder="Tirs"defaultValue={6} />
+                <input type="number" min={0} name="quentin_goals" id="goals" placeholder="Buts" defaultValue={4} onChange={(e) => handleGoalsChange(e, 'quentin_goals')}/>
+                <input type="number" min={0} name="quentin_assists" id="assists" placeholder="PassesD" defaultValue={3} />
+                <input type="number" min={0} name="quentin_shoots" id="shoots" placeholder="Tirs" defaultValue={6} />
               </div>
               <h3>Ben</h3>
               <div className={`${styles.form} ${styles.form_grid}`}>
-                <input type="number" name="ben_goals" id="goals" placeholder="Buts"defaultValue={12} />
-                <input type="number" name="ben_assists" id="assists" placeholder="PassesD"defaultValue={3} />
-                <input type="number" name="ben_shoots" id="shoots" placeholder="Tirs"defaultValue={14} />
+                <input type="number" min={0} name="ben_goals" id="goals" placeholder="Buts" defaultValue={5} onChange={(e) => handleGoalsChange(e, 'ben_goals')}/>
+                <input type="number" min={0} name="ben_assists" id="assists" placeholder="PassesD" defaultValue={3} />
+                <input type="number" min={0} name="ben_shoots" id="shoots" placeholder="Tirs" defaultValue={5} />
               </div>
               </div>
 
