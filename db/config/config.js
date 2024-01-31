@@ -1,13 +1,13 @@
 'use strict';
-import pg from "pg";
+// import pg from "pg";
 module.exports = {
   development: {
-    username: "navart",
-    password: "admin&&",
-    database: "my-stats-bis",
-    host: "127.0.0.1",
-    dialect: "postgres",
+    username: 'navart',
+    password: process.env.DB_PASS,
+    database: 'my-stats-dev',
+    host: process.env.PG_DB_HOST,
     port: process.env.DB_PORT || 5432,
+    dialect: "postgres",
   },
   test: {
     username: process.env.DB_USER,
@@ -20,7 +20,7 @@ module.exports = {
   production: { 
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
-    dialectModule: pg,
+    // dialectModule: pg,
     dialectOptions: {
       ssl: {
         require: true,

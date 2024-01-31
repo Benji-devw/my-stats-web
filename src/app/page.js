@@ -12,17 +12,16 @@ import Button from "@/components/Button";
 
 export default function Home() {
   const [datas, setDatas] = useState([]);
-  const [totalStats, setTotalStats] = useState(null);
+  const [totalStats, setTotalStats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const API_URL =
-    process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app" : "http://localhost:3000";
+  const API_URL = process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app" : "http://localhost:3000";
 
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    fetch(`${API_URL}/api`, { next: { revalidate: 1 } }, {
+    fetch(`${API_URL}/api`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
