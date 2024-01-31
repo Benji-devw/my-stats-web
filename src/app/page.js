@@ -16,13 +16,13 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const API_URL =
-    process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app" : "http://localhost:3000";
+    process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app/api" : "http://localhost:3000/api";
 
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    fetch(`${API_URL}/api`, {
+    fetch(`${API_URL}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
