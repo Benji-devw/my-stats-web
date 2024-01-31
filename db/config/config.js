@@ -1,4 +1,5 @@
 'use strict';
+import sqlite3 from "sqlite3";
 module.exports = {
   development: {
     username: process.env.DB_USER,
@@ -20,6 +21,7 @@ module.exports = {
     password: null,
     storage: process.env.DB_NAME,
     host: process.env.DB_HOST,
+    dialectModule: sqlite3,
     dialect: "sqlite",
     // dialectOptions: {
     //   ssl: true,
