@@ -22,7 +22,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
 
-    fetch(`${API_URL}/api`, {
+    fetch(`${API_URL}/api`, { next: { revalidate: 1 } }, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

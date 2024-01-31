@@ -13,7 +13,6 @@ ALTER DATABASE "dbname" OWNER TO username; -- for autorized role to create table
 
 ### With Sequelize Create SQLite database:
 ```bash
-// node connect.js
 npx sequelize-cli db:migrate
 or
 sequelize db:migrate
@@ -24,7 +23,7 @@ Seed data:
 npx sequelize-cli db:seed:all
 ```
 
-### Fix error "Error: Please install sqlite3 package manually" :
+### Fix error "Error: Please install pg package manually" :
 - Add to next.config.mjs
 ```js  
 experimental: {
@@ -32,12 +31,20 @@ experimental: {
     externalDir: true,
   },
 ```
+- Add to /db/config/congif.js > production
+```js  
+import pg from "pg";
+dialectModule: pg,
+```
 
+### env
 - Add to .env
 ```json
 NODE_ENV=development
-DB_NAME=./test_collection.db
-DB_HOST=127.0.0.1
+PG_DB_NAME=dbname
+PG_DB_USER=username
+PG_DB_PASSWORD=password
+PG_DB_HOST=127.0.0.1
 ```
 
 First, run the development server:
