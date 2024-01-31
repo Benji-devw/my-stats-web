@@ -44,7 +44,7 @@ export default function Home() {
       .finally(() => {
         setLoading(false);
       });
-  }, [API_URL]);
+  }, []);
 
   return (
     <LayoutPage>
