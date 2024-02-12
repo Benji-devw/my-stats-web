@@ -27,7 +27,7 @@ const PostMatch = () => {
   // Add post mehtod
   const addMatch = async (match) => {
     try {
-      const res = await fetch(`${API_URL}/api/match/post`, {cache: "no-store"}, {
+      const res = await fetch(`${API_URL}/api/match/post`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const PostMatch = () => {
     try {
       for (const player of playersMatch) {
         console.log(player);
-      const res = await fetch(`${API_URL}/api/playersmatches/post`, {cache: "no-store"}, {
+      const res = await fetch(`${API_URL}/api/playersmatches/post`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
