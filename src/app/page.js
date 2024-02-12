@@ -9,7 +9,7 @@ import MatchCard from "@/components/Match_Card";
 import Link from "next/link";
 import LayoutPage from "@/app/pages/layoutPage";
 import Add_Button from "@/components/Add_Button";
-
+import { unstable_noStore as noStore } from 'next/cache';
 // export const dynamic = 'force-dynamic';
 // export const revalidate = 0;
 
@@ -19,7 +19,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const API_URL = process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app" : "http://localhost:3000";
-
+  noStore();
   useEffect(() => {
     setLoading(true);
     setError(null);
