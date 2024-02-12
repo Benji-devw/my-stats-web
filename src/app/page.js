@@ -10,11 +10,11 @@ import Link from "next/link";
 import LayoutPage from "@/app/pages/layoutPage";
 import Add_Button from "@/components/Add_Button";
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// export const dynamic = 'force-dynamic';
+// export const revalidate = 0;
 
 export default function Home() {
-  const [datas, setDatas] = useState([]);
+  const [data, setData] = useState([]);
   const [totalStats, setTotalStats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,7 +24,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
 
-    fetch(`${API_URL}/api`, {next: { revalidate: 0}}, {
+    fetch(`${API_URL}/api`, {cache: "no-store"}, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export default function Home() {
         return res.json();
       })
       .then((data) => {
-        setDatas(data);
+        setData(data);
         setTotalStats(calculateTotalStats(data.playerMatches));
       })
       .catch((error) => {
@@ -46,7 +46,7 @@ export default function Home() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [API_URL]);
 
   return (
     <LayoutPage>
@@ -58,8 +58,8 @@ export default function Home() {
         <>
           <div className={styles.matches_grid}>
             <Link href="/pages/match/post"><Add_Button> + </Add_Button></Link>
-            {datas.matches &&
-              Object(datas.matches).map((match) => (
+            {data.matches &&
+              Object(data.matches).map((match) => (
                 <Link href={`/pages/match/${match.id}`} key={match.id}>
                   <MatchCard
                     key={match.id}
@@ -76,8 +76,8 @@ export default function Home() {
           </div>
 
           <div className={styles.players_grid}>
-            {datas.players &&
-              Object(datas.players).map((player) => (
+            {data.players &&
+              Object(data.players).map((player) => (
                 <PlayerCard
                   key={player.id}
                   name={player.name}
@@ -87,7 +87,7 @@ export default function Home() {
                   totalStats={totalStats ? totalStats[player.id] : []} // Add totalStats by id
                 />
               ))}
-              <Add_Button> + </Add_Button>
+            <Add_Button> + </Add_Button>
           </div>
         </>
       )}
