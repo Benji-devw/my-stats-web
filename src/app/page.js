@@ -10,7 +10,7 @@ import Link from "next/link";
 import LayoutPage from "@/app/pages/layoutPage";
 import Add_Button from "@/components/Add_Button";
 import { unstable_noStore as noStore } from 'next/cache';
-// export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 // export const revalidate = 0;
 
 export default function Home() {
