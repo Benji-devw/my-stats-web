@@ -2,14 +2,15 @@
 //TODO: ADD AXIOS for remove use Client
 import "@styles/globals.css";
 import styles from "@styles/page.module.css";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import PlayerCard from "@components/Player_Card.jsx";
 import calculateTotalStats from "@utils/totalStats.js";
 import MatchCard from "@/components/Match_Card";
 import Link from "next/link";
 import LayoutPage from "@/app/pages/layoutPage";
 import Add_Button from "@/components/Add_Button";
-import { unstable_noStore as noStore } from 'next/cache';
+import {unstable_noStore as noStore} from 'next/cache';
+
 export const dynamic = 'force-dynamic';
 // export const revalidate = 0;
 
