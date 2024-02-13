@@ -1,17 +1,14 @@
 "use strict";
 import db from "/db/models/index.js";
-// const db = require("./db/models/index.js");
 db.sequelize.sync();
 
 // Add get method to get all matches
 export async function GET(req, res) {
   const matchId = res.params.slug;
-  // console.log(matchId);
-
   try {
     // Get Match
     const match = await db.Matches.findOne({
-      where: { id: matchId },
+      where: {id: matchId},
       include: {
         model: db.Players,
         attributes: ["id", "name", "media", "player_average", "golden"],
@@ -24,19 +21,19 @@ export async function GET(req, res) {
     });
 
     if (!match) {
-      return res.status(404).json({ message: "match not found" });
+      return res.status(404).json({message: "match not found"});
     }
 
     // Return the matches and Matches as a JSON response with status 200
-    return new Response(JSON.stringify({ match }), {
-      headers: { "Content-Type": "application/json" },
+    return new Response(JSON.stringify({match}), {
+      headers: {"Content-Type": "application/json"},
       status: 200,
     });
   } catch (error) {
     console.error(error);
     return res
       .status(400)
-      .json({ message: "Unable to connect to the database:", error });
+      .json({message: "Unable to connect to the database:", error});
   }
 }
 
@@ -47,11 +44,11 @@ export async function PUT(req, res) {
     const matchId = res.params.slug;
 
     // Get the match from the database
-    const match = await db.Matches.findOne({ where: { id: matchId } });
+    const match = await db.Matches.findOne({where: {id: matchId}});
 
     // If the match doesn't exist, return a 404 error
     if (!match) {
-      return res.status(404).json({ message: "match not found" });
+      return res.status(404).json({message: "match not found"});
     }
 
     // Get the updated data from the request body
@@ -61,14 +58,14 @@ export async function PUT(req, res) {
     const updatedMatch = await match.update(updatedData);
 
     // Return the updated match as a JSON response with status 200
-    return new Response(JSON.stringify({ updatedMatch }), {
-      headers: { "Content-Type": "application/json" },
+    return new Response(JSON.stringify({updatedMatch}), {
+      headers: {"Content-Type": "application/json"},
       status: 200,
     });
   } catch (error) {
     console.error(error);
     return res
       .status(400)
-      .json({ message: "Unable to connect to the database:", error });
+      .json({message: "Unable to connect to the database:", error});
   }
 }
