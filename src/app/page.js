@@ -10,6 +10,7 @@ import Link from "next/link";
 import LayoutPage from "@/app/pages/layoutPage";
 import Add_Button from "@/components/Add_Button";
 import {unstable_noStore as noStore} from 'next/cache';
+import axios from 'redaxios';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 0;
@@ -20,26 +21,27 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const API_URL = process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app" : "http://localhost:3000";
-  noStore();
+
   useEffect(() => {
+    noStore();
     setLoading(true);
     setError(null);
 
-    fetch(`${API_URL}/api`, {cache: "no-store"}, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    // fetch(`${API_URL}/api`, {cache: "no-store"}, {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    const arbortController = new AbortController();
+    axios.get(`${API_URL}/api`, {
+      cache: "no-store",
+      signal: arbortController.signal,
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setData(data);
-        setTotalStats(calculateTotalStats(data.playerMatches));
+      .then((response) => {
+        // console.log(response.data)
+        setData(response.data);
+        setTotalStats(calculateTotalStats(response.data.playerMatches));
       })
       .catch((error) => {
         setError(`Fetch error: ${error.message}`);
@@ -58,7 +60,7 @@ export default function Home() {
       ) : (
         <>
           <div className={styles.matches_grid}>
-            <Link href="/pages/match/post"><Add_Button> + </Add_Button></Link>
+            <Link href={"/pages/match/post"}><Add_Button> + </Add_Button></Link>
             {data.matches &&
               Object(data.matches).map((match) => (
                 <Link href={`/pages/match/${match.id}`} key={match.id}>

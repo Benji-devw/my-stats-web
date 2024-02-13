@@ -1,16 +1,24 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import LayoutPage from "@/app/pages/layoutPage";
 import styles from "@styles/form.module.css";
 import Button from "@/components/Button";
 // import PlayerCard from "@/components/Player_Card.jsx";
+// import axios from 'redaxios';
+import axios from 'ky';
 
 const PostMatch = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [new_id, setNew_Id] = useState(null);
   const [totalGoals, setTotalGoals] = useState(0);
-  const [prevGoals, setPrevGoals] = useState({ steph_goals: 0, tom_goals: 0, pedro_goals: 0, quentin_goals: 0, ben_goals: 0});
+  const [prevGoals, setPrevGoals] = useState({
+    steph_goals: 0,
+    tom_goals: 0,
+    pedro_goals: 0,
+    quentin_goals: 0,
+    ben_goals: 0
+  });
   const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app' : 'http://localhost:3000';
 
   useEffect(() => {
@@ -18,54 +26,38 @@ const PostMatch = () => {
   }, []);
 
   const handleGoalsChange = (e, player) => {
-    console.log('e.target.value', e.target.value);
+    // console.log('e.target.value', e.target.value);
     const newGoals = Number(e.target.value);
     const diff = newGoals - prevGoals[player];
     setTotalGoals(totalGoals + diff);
-    setPrevGoals({ ...prevGoals, [player]: newGoals });
+    setPrevGoals({...prevGoals, [player]: newGoals});
   };
 
   const addMatch = async (match) => {
+    // console.log('match', match);
     try {
-      const res = await fetch(`${API_URL}/api/match/post`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      await axios.post(`${API_URL}/api/match/post`, {
         body: JSON.stringify(match),
-      });
-
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-
-      const data = await res.json();
-      // console.log(data);
-
+      })
+        .json()
+        .then((response) => console.log(response))
+        .catch((error) => setError(`Fetch error: ${error.message}`));
     } catch (error) {
       setError(`Fetch error: ${error.message}`);
     }
   };
 
   const addPlayerMatch = async (playersMatch) => {
+    // console.log('playersMatch', playersMatch);
     try {
       for (const player of playersMatch) {
-        console.log(player);
-      const res = await fetch(`${API_URL}/api/playersmatches/post`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(player),
-      });
-      
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
+        await axios.post(`${API_URL}/api/playersmatches/post`, {
+          body: JSON.stringify(player),
+        })
+          .json()
+          .then((response) => console.log(response))
+          .catch((error) => setError(`Fetch error: ${error.message}`));
       }
-      
-      const data = await res.json();
-      // console.log(data);
-    }
     } catch (error) {
       setError(`Fetch error: ${error.message}`);
     }
@@ -82,6 +74,18 @@ const PostMatch = () => {
         return;
       }
     }
+    // Total assists not greater than total goals
+    let totalShoots = 0;
+    for (let player of players) {
+      totalShoots += parseInt(e.target[`${player}_assists`].value);
+    }
+    for (let player of players) {
+      if (parseInt(e.target[`${player}_shoots`].value) > parseInt(e.target[`${player}_shoots`].value)) {
+        alert('Les passeD ne peuvent pas être supérieurs aux buts');
+        return;
+      }
+    }
+
 
     // TODO: change date
     const match = {
@@ -152,24 +156,8 @@ const PostMatch = () => {
       },
     ]
 
-    // console.log(match);
-    // console.log('playersMatch', playersMatch);
     await addMatch(match);
     await addPlayerMatch(playersMatch);
-  };
-
-  const [scores, setScores] = useState({
-    tom_goals: 0,
-    tom_assists: 0,
-    tom_shoots: 0,
-  });
-  
-  const test = (player, value) => {
-    console.log(player, value);
-    setScores({
-      ...scores,
-      [player]: scores[player] + value,
-    });
   };
 
 
@@ -182,81 +170,92 @@ const PostMatch = () => {
           ) : error ? (
             <h2 className="">Error: {error}</h2>
           ) : (
-          <>
-            <h2>Création Match :</h2>
+            <>
+              <h2>Création Match :</h2>
 
-            {/* <div className={styles.form}> */}
-            <form onSubmit={handleSubmit}>
-              <div className={`${styles.form} ${styles.form_flex}`}>
-              <h3 className={styles.form_page_title}><b>Match</b></h3>
+              {/* <div className={styles.form}> */}
+              <form onSubmit={handleSubmit}>
+                <div className={`${styles.form} ${styles.form_flex}`}>
+                  <h3 className={styles.form_page_title}><b>Match</b></h3>
 
-                <label htmlFor="media_video">Lien NGTV</label>
-                <input type="text" name="media_video" id="media_video" defaultValue={"https://www.youtube.com/watch?v=Q5mHPo2yDG8"}/>
+                  <label htmlFor="media_video">Lien NGTV</label>
+                  <input type="text" name="media_video" id="media_video"
+                         defaultValue={"https://www.youtube.com/watch?v=Q5mHPo2yDG8"}/>
 
-                {/* <label htmlFor="team1_name">Nom de l'équipe 1</label> */}
-                <input type="text" name="team1_name" id="team1_name" defaultValue={"Team A"} />
+                  {/* <label htmlFor="team1_name">Nom de l'équipe 1</label> */}
+                  <input type="text" name="team1_name" id="team1_name" defaultValue={"Team A"}/>
 
-                {/* <label htmlFor="team2_name">Nom de l'équipe 2</label> */}
-                <input type="text" name="team2_name" id="team2_name" defaultValue={"Team B"}/>
+                  {/* <label htmlFor="team2_name">Nom de l'équipe 2</label> */}
+                  <input type="text" name="team2_name" id="team2_name" defaultValue={"Team B"}/>
 
-                <label htmlFor="team1_score">Score de Team A</label>
-                <input type="number" name="team1_score" id="team1_score" min={0} value={totalGoals} disabled />
+                  <label htmlFor="team1_score">Score de Team A</label>
+                  <input type="number" name="team1_score" id="team1_score" min={0} value={totalGoals} disabled/>
 
-                <label htmlFor="team2_score">Score de Team B</label>
-                <input type="number" name="team2_score" id="team2_score" min={0} defaultValue={11}/>
+                  <label htmlFor="team2_score">Score de Team B</label>
+                  <input type="number" name="team2_score" id="team2_score" min={0} defaultValue={11}/>
 
-                <label htmlFor="encounter_date">Date de la rencontre</label>
-                <input type="date" name="encounter_date" id="encounter_date" defaultValue="2024-01-27"/>
+                  <label htmlFor="encounter_date">Date de la rencontre</label>
+                  <input type="date" name="encounter_date" id="encounter_date" defaultValue="2024-01-27"/>
 
-                <label htmlFor="encounter_time">Heure de la rencontre</label>
-                <input type="time" name="encounter_time" id="encounter_time" defaultValue="12:12"/>
-              </div>
-
-              <h3 className={styles.form_page_title}><b>Joueurs</b></h3>
-              <div className={` ${styles.form_flex}`}>
-
-                <div className={`${styles.form} ${styles.form_grid}`}>
-                  <label htmlFor="">Buts</label>
-                  <label htmlFor="">Passes D</label>
-                  <label htmlFor="">Tirs</label>
+                  <label htmlFor="encounter_time">Heure de la rencontre</label>
+                  <input type="time" name="encounter_time" id="encounter_time" defaultValue="12:12"/>
                 </div>
-                <h3>Steph</h3>
-                <div className={`${styles.form} ${styles.form_grid}`}>
-                  <input type="number" min={0} name="steph_goals" id="goals" placeholder="Buts" defaultValue={0} onChange={(e) => handleGoalsChange(e, 'steph_goals')}/>
-                  <input type="number" min={0} name="steph_assists" id="assists" placeholder="PassesD" defaultValue={3} />
-                  <input type="number" min={0} name="steph_shoots" id="shoots" placeholder="Tirs" defaultValue={5} />
-                </div>
-                <h3>Tom</h3>
-                <div className={`${styles.form} ${styles.form_grid}`}>
-                    <input type="number" min={0} name="tom_goals" id="tom_goals" placeholder="Buts" defaultValue={0} onChange={(e) => handleGoalsChange(e, 'tom_goals')}/>
-                    <input type="number" min={0} name="tom_assists" id="tom_assists" placeholder="PassesD" defaultValue={0} />
-                    <input type="number" min={0} name="tom_shoots" id="tom_shoots" placeholder="Tirs" defaultValue={5} />
-                </div>
-                <h3>Pedro</h3>
-                <div className={`${styles.form} ${styles.form_grid}`}>
-                  <input type="number" min={0} name="pedro_goals" id="goals" placeholder="Buts" defaultValue={0} onChange={(e) => handleGoalsChange(e, 'pedro_goals')}/>
-                  <input type="number" min={0} name="pedro_assists" id="assists" placeholder="PassesD" defaultValue={3} />
-                  <input type="number" min={0} name="pedro_shoots" id="shoots" placeholder="Tirs" defaultValue={5} />
-                </div>
-                <h3>Quentin</h3>
-                <div className={`${styles.form} ${styles.form_grid}`}>
-                  <input type="number" min={0} name="quentin_goals" id="goals" placeholder="Buts" defaultValue={0} onChange={(e) => handleGoalsChange(e, 'quentin_goals')}/>
-                  <input type="number" min={0} name="quentin_assists" id="assists" placeholder="PassesD" defaultValue={3} />
-                  <input type="number" min={0} name="quentin_shoots" id="shoots" placeholder="Tirs" defaultValue={5} />
-                </div>
-                <h3>Ben</h3>
-                <div className={`${styles.form} ${styles.form_grid}`}>
-                  <input type="number" min={0} name="ben_goals" id="goals" placeholder="Buts" defaultValue={0} onChange={(e) => handleGoalsChange(e, 'ben_goals')}/>
-                  <input type="number" min={0} name="ben_assists" id="assists" placeholder="PassesD" defaultValue={3} />
-                  <input type="number" min={0} name="ben_shoots" id="shoots" placeholder="Tirs" defaultValue={5} />
-                </div>
-              </div>
-              <Button type="submit" value="Envoyer">
 
-                Envoyer
-              </Button>
-            </form>
-          </>
+                <h3 className={styles.form_page_title}><b>Joueurs</b></h3>
+                <div className={` ${styles.form_flex}`}>
+
+                  <div className={`${styles.form} ${styles.form_grid}`}>
+                    <label htmlFor="">Buts</label>
+                    <label htmlFor="">Passes D</label>
+                    <label htmlFor="">Tirs</label>
+                  </div>
+                  <h3>Steph</h3>
+                  <div className={`${styles.form} ${styles.form_grid}`}>
+                    <input type="number" min={0} name="steph_goals" id="goals" placeholder="Buts" defaultValue={0}
+                           onChange={(e) => handleGoalsChange(e, 'steph_goals')}/>
+                    <input type="number" min={0} name="steph_assists" id="assists" placeholder="PassesD"
+                           defaultValue={3}/>
+                    <input type="number" min={0} name="steph_shoots" id="shoots" placeholder="Tirs" defaultValue={5}/>
+                  </div>
+                  <h3>Tom</h3>
+                  <div className={`${styles.form} ${styles.form_grid}`}>
+                    <input type="number" min={0} name="tom_goals" id="tom_goals" placeholder="Buts" defaultValue={0}
+                           onChange={(e) => handleGoalsChange(e, 'tom_goals')}/>
+                    <input type="number" min={0} name="tom_assists" id="tom_assists" placeholder="PassesD"
+                           defaultValue={0}/>
+                    <input type="number" min={0} name="tom_shoots" id="tom_shoots" placeholder="Tirs" defaultValue={5}/>
+                  </div>
+                  <h3>Pedro</h3>
+                  <div className={`${styles.form} ${styles.form_grid}`}>
+                    <input type="number" min={0} name="pedro_goals" id="goals" placeholder="Buts" defaultValue={0}
+                           onChange={(e) => handleGoalsChange(e, 'pedro_goals')}/>
+                    <input type="number" min={0} name="pedro_assists" id="assists" placeholder="PassesD"
+                           defaultValue={3}/>
+                    <input type="number" min={0} name="pedro_shoots" id="shoots" placeholder="Tirs" defaultValue={5}/>
+                  </div>
+                  <h3>Quentin</h3>
+                  <div className={`${styles.form} ${styles.form_grid}`}>
+                    <input type="number" min={0} name="quentin_goals" id="goals" placeholder="Buts" defaultValue={0}
+                           onChange={(e) => handleGoalsChange(e, 'quentin_goals')}/>
+                    <input type="number" min={0} name="quentin_assists" id="assists" placeholder="PassesD"
+                           defaultValue={3}/>
+                    <input type="number" min={0} name="quentin_shoots" id="shoots" placeholder="Tirs" defaultValue={5}/>
+                  </div>
+                  <h3>Ben</h3>
+                  <div className={`${styles.form} ${styles.form_grid}`}>
+                    <input type="number" min={0} name="ben_goals" id="goals" placeholder="Buts" defaultValue={0}
+                           onChange={(e) => handleGoalsChange(e, 'ben_goals')}/>
+                    <input type="number" min={0} name="ben_assists" id="assists" placeholder="PassesD"
+                           defaultValue={3}/>
+                    <input type="number" min={0} name="ben_shoots" id="shoots" placeholder="Tirs" defaultValue={5}/>
+                  </div>
+                </div>
+                <Button type="submit" value="Envoyer">
+
+                  Envoyer
+                </Button>
+              </form>
+            </>
           )
         }
       </div>
