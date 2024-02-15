@@ -3,13 +3,14 @@ import styles from "@styles/player_card.module.css";
 import Image from "next/image";
 // import Link from "next/link";
 
-const PayerCard = ({
-  name,
-  media,
-  golden,
-  golden_old,
-  totalStats,
-}) => {
+const PayerCard = (
+  {
+    name,
+    media,
+    golden,
+    golden_old,
+    totalStats,
+  }) => {
   // console.log(totalStats);
   return (
     <div className={styles.card}>
@@ -39,7 +40,7 @@ const PayerCard = ({
       <p>
         <b>TOTAL : </b>
       </p>
-
+      
       <p>
         Matchs joués: <b>{totalStats.matchCount}</b>
       </p>

@@ -8,7 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Radar } from "react-chartjs-2";
+import {Radar} from "react-chartjs-2";
 
 ChartJS.register(
   RadialLinearScale,
@@ -52,9 +52,9 @@ const config = {
   },
 };
 
-export default function StatsChart({ players }) {
+export default function StatsChart({players}) {
   // console.log(players);
-
+  
   const test = players.map((player) => {
     return {
       label: player.name,
@@ -73,26 +73,26 @@ export default function StatsChart({ players }) {
       // player.name === "Ben" ? "#e66e3fb0" :
       // "transparent",
       borderColor: player.name === "Steph" ? "#d62541" :
-                    player.name === "Quentin" ? "#fcda00" : 
-                    player.name === "Tom" ? "#08a2ca" :
-                    player.name === "Pedro" ? "#6cb34b" :
-                    player.name === "Ben" ? "#e66f3f" :
-                    "#transparent",
+        player.name === "Quentin" ? "#fcda00" :
+          player.name === "Tom" ? "#08a2ca" :
+            player.name === "Pedro" ? "#6cb34b" :
+              player.name === "Ben" ? "#e66f3f" :
+                "#transparent",
       borderWidth: 1.5,
       
       pointRadius: 5,
     };
   });
-
+  
   const data = {
-    labels: ["Moyenne", "Buts", "Passes D", "Tirs", ],
-    datasets: 
-      test
+    labels: ["Moyenne", "Buts", "Passes D", "Tirs",],
+    datasets:
+    test
     ,
   };
   return (
     <div>
-      <Radar data={data} options={config} />
+      <Radar data={data} options={config}/>
     </div>
   );
 }

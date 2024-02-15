@@ -10,8 +10,7 @@
   padding: 0.5rem;
   margin: 1rem 1rem;
   border-radius: var(--b-radius-12);
-  /* background: rgba(var(--card-rgb), 0); */
-  border: 1px solid rgba(var(--card-border-rgb), 0);
+   /*background: rgba(var(--card-rgb), 0);*/
   transition: background 200ms, border 200ms;
   position: relative;
   z-index: 100;
@@ -39,7 +38,7 @@
   font-size: 0.9rem;
   line-height: 1.5;
   max-width: 30ch;
-  text-wrap: balance;
+  text-wrap: normal;
 }
 .card_media {
   position: relative;

@@ -4,13 +4,13 @@ import Button from "@/components/Button";
 import Link from "next/link";
 
 const MatchCard = ({
-  date,
-  media_video,
-  team1_name,
-  team2_name,
-  team1_score,
-  team2_score,
-}) => {
+                     date,
+                     media_video,
+                     team1_name,
+                     team2_name,
+                     team1_score,
+                     team2_score,
+                   }) => {
   // console.log(media_video);
   return (
     <div className={styles.card}>
@@ -22,13 +22,13 @@ const MatchCard = ({
           {team1_score} - {team2_score}
         </b>
       </h3>
-
+      
       {media_video ? (
         <Button className={styles_button.button}>
           <Link href={media_video}>Voir le match sur NGTV </Link>
         </Button>
-      ) : (<h3><span>-&gt;</span> </h3>)}
-
+      ) : (<h3><span>-&gt;</span></h3>)}
+      
       <code>
         Date: <b>{date}</b>
       </code>

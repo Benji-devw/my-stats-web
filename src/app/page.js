@@ -1,5 +1,4 @@
 "use client";
-//TODO: ADD AXIOS for remove use Client
 import "@styles/globals.css";
 import styles from "@styles/page.module.css";
 import {useEffect, useState} from "react";
@@ -21,18 +20,12 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const API_URL = process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app" : "http://localhost:3000";
-
+  
   useEffect(() => {
     noStore();
     setLoading(true);
     setError(null);
-
-    // fetch(`${API_URL}/api`, {cache: "no-store"}, {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
+    
     const arbortController = new AbortController();
     axios.get(`${API_URL}/api`, {
       cache: "no-store",
@@ -50,7 +43,7 @@ export default function Home() {
         setLoading(false);
       });
   }, [API_URL]);
-
+  
   return (
     <LayoutPage>
       {loading ? (
@@ -77,7 +70,7 @@ export default function Home() {
                 </Link>
               ))}
           </div>
-
+          
           <div className={styles.players_grid}>
             {data.players &&
               Object(data.players).map((player) => (
