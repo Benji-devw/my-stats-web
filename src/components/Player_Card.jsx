@@ -56,6 +56,9 @@ const PayerCard = (
       <p>
         A été <b>{golden_old}</b> fois ballon d'or{" "}
       </p>
+      <p>
+        Moyenne: <b>{(totalStats.totalGoals * 100 / totalStats.totalShoots).toFixed(1)}</b>
+      </p>
       <h3><span>-&gt;</span></h3>
     </div>
   );
