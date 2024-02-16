@@ -11,7 +11,7 @@ import Add_Button from "@/components/Add_Button";
 import {unstable_noStore as noStore} from 'next/cache';
 import axios from 'redaxios';
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 // export const revalidate = 0;
 
 export default function Home() {
@@ -26,15 +26,11 @@ export default function Home() {
     setLoading(true);
     setError(null);
     
-    const arbortController = new AbortController();
-    axios.get(`${API_URL}/api`, {
-      cache: "no-store",
-      signal: arbortController.signal,
-    })
-      .then((response) => {
-        // console.log(response.data)
-        setData(response.data);
-        setTotalStats(calculateTotalStats(response.data.playerMatches));
+    axios
+      .get(`${API_URL}/api`)
+      .then((res) => {
+        setData(res.data);
+        setTotalStats(calculateTotalStats(res.data.playerMatches));
       })
       .catch((error) => {
         setError(`Fetch error: ${error.message}`);
@@ -90,3 +86,4 @@ export default function Home() {
     </LayoutPage>
   );
 }
+
