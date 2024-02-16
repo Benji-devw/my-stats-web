@@ -2,8 +2,8 @@
     background-color: var(--primary-60);
     border: 1px solid var(--background);
     border-radius: var(--b-radius-26);
-    padding: .6rem 1rem;
-    font-size: 1.1rem;
+    padding: .4rem .7rem;
+    font-size: .9rem;
     color: var(--background);
 
     max-width: 400px;

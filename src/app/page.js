@@ -6,13 +6,11 @@ import PlayerCard from "@components/Player_Card.jsx";
 import calculateTotalStats from "@utils/totalStats.js";
 import MatchCard from "@/components/Match_Card";
 import Link from "next/link";
-import LayoutPage from "@/app/pages/layoutPage";
+import LayoutPage from "@/app/pages/match/layoutPage";
 import Add_Button from "@/components/Add_Button";
-import {unstable_noStore as noStore} from 'next/cache';
+// import {unstable_noStore as noStore} from 'next/cache';
 import axios from 'redaxios';
 
-// export const dynamic = 'force-dynamic';
-// export const revalidate = 0;
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -22,7 +20,7 @@ export default function Home() {
   const API_URL = process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app" : "http://localhost:3000";
   
   useEffect(() => {
-    noStore();
+    // noStore();
     setLoading(true);
     setError(null);
     

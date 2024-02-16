@@ -1,7 +1,7 @@
 "use client";
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from "react";
-import LayoutPage from "@/app/pages/layoutPage";
+import LayoutPage from "@/app/pages/match/layoutPage";
 import MatchCard from "@/components/Match_Card";
 import styles from "@styles/page.module.css";
 import StatsChart from "@/components/chart";

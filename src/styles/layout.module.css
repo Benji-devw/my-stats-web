@@ -6,20 +6,20 @@
   padding: 5rem 1rem;
   min-height: 100vh;
 
-  margin: 0 auto;
+  margin: 1rem auto;
   position: relative;
   z-index: 100;
 }
 
-.description {
+header .description {
   display: inherit;
   justify-content: inherit;
   align-items: inherit;
   font-size: 0.85rem;
   max-width: var(--max-width);
   width: 100%;
-  z-index: 2;
-  font-family: var(--font-mono);
+  z-index: 300;
+  /*font-family: var(--font-mono);*/
 }
 
 .description a {
@@ -29,7 +29,7 @@
   gap: 0.5rem;
 }
 
-.description p {
+.description h1 {
   position: relative;
   margin: 0;
   padding: 1rem;
@@ -83,6 +83,6 @@
       transparent 0%,
       rgb(var(--background-end-rgb)) 40%
     );
-    z-index: 1;
+    z-index: 500;
   }
 }

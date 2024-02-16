@@ -10,7 +10,7 @@ export async function GET() {
   return new Response(JSON.stringify({ matches, players, playerMatches }), {
     headers: { "Content-Type": "application/json" },
     status: 200,
-    cache: "no-store",
+    cache: "no-store",  // TO FIXE CACHE ISSUE
   });
 }
 

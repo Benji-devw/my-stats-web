@@ -1,6 +1,6 @@
 "use client";
 import React, {useEffect, useState} from "react";
-import LayoutPage from "@/app/pages/layoutPage";
+import LayoutPage from "@/app/pages/match/layoutPage";
 import styles from "@styles/form.module.css";
 import Button from "@/components/Button";
 import axios from 'ky';
@@ -112,7 +112,7 @@ const PostMatch = () => {
         goals: e.target.steph_goals.value,
         assists: e.target.steph_assists.value,
         shoots: e.target.steph_shoots.value,
-        average: (10 * e.target.steph_goals.value / e.target.steph_shoots.value).toFixed(1),
+        average: (100 * e.target.steph_goals.value / e.target.steph_shoots.value).toFixed(1),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -122,7 +122,7 @@ const PostMatch = () => {
         goals: e.target.tom_goals.value,
         assists: e.target.tom_assists.value,
         shoots: e.target.tom_shoots.value,
-        average: (10 * e.target.tom_goals.value / e.target.tom_shoots.value).toFixed(1),
+        average: (100 * e.target.tom_goals.value / e.target.tom_shoots.value).toFixed(1),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -132,7 +132,7 @@ const PostMatch = () => {
         goals: e.target.pedro_goals.value,
         assists: e.target.pedro_assists.value,
         shoots: e.target.pedro_shoots.value,
-        average: (10 * e.target.pedro_goals.value / e.target.pedro_shoots.value).toFixed(1),
+        average: (100 * e.target.pedro_goals.value / e.target.pedro_shoots.value).toFixed(1),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -142,7 +142,7 @@ const PostMatch = () => {
         goals: e.target.quentin_goals.value,
         assists: e.target.quentin_assists.value,
         shoots: e.target.quentin_shoots.value,
-        average: (10 * e.target.quentin_goals.value / e.target.quentin_shoots.value).toFixed(1),
+        average: (100 * e.target.quentin_goals.value / e.target.quentin_shoots.value).toFixed(1),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -152,7 +152,7 @@ const PostMatch = () => {
         goals: e.target.ben_goals.value,
         assists: e.target.ben_assists.value,
         shoots: e.target.ben_shoots.value,
-        average: (10 * e.target.ben_goals.value / e.target.ben_shoots.value).toFixed(1),
+        average: (100 * e.target.ben_goals.value / e.target.ben_shoots.value).toFixed(1),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -229,31 +229,31 @@ const PostMatch = () => {
                            onChange={(e) => handleGoalsChange(e, 'tom_goals')}/>
                     <input type="number" min={0} name="tom_assists" id="tom_assists" placeholder="PassesD"
                            defaultValue={0}/>
-                    <input type="number" min={0} name="tom_shoots" id="tom_shoots" placeholder="Tirs" defaultValue={5}/>
+                    <input type="number" min={0} name="tom_shoots" id="tom_shoots" placeholder="Tirs" defaultValue={0}/>
                   </div>
                   <h3>Pedro</h3>
                   <div className={`${styles.form} ${styles.form_grid}`}>
                     <input type="number" min={0} name="pedro_goals" id="goals" placeholder="Buts" defaultValue={0}
                            onChange={(e) => handleGoalsChange(e, 'pedro_goals')}/>
                     <input type="number" min={0} name="pedro_assists" id="assists" placeholder="PassesD"
-                           defaultValue={3}/>
-                    <input type="number" min={0} name="pedro_shoots" id="shoots" placeholder="Tirs" defaultValue={5}/>
+                           defaultValue={0}/>
+                    <input type="number" min={0} name="pedro_shoots" id="shoots" placeholder="Tirs" defaultValue={0}/>
                   </div>
                   <h3>Quentin</h3>
                   <div className={`${styles.form} ${styles.form_grid}`}>
                     <input type="number" min={0} name="quentin_goals" id="goals" placeholder="Buts" defaultValue={0}
                            onChange={(e) => handleGoalsChange(e, 'quentin_goals')}/>
                     <input type="number" min={0} name="quentin_assists" id="assists" placeholder="PassesD"
-                           defaultValue={3}/>
-                    <input type="number" min={0} name="quentin_shoots" id="shoots" placeholder="Tirs" defaultValue={5}/>
+                           defaultValue={0}/>
+                    <input type="number" min={0} name="quentin_shoots" id="shoots" placeholder="Tirs" defaultValue={0}/>
                   </div>
                   <h3>Ben</h3>
                   <div className={`${styles.form} ${styles.form_grid}`}>
                     <input type="number" min={0} name="ben_goals" id="goals" placeholder="Buts" defaultValue={0}
                            onChange={(e) => handleGoalsChange(e, 'ben_goals')}/>
                     <input type="number" min={0} name="ben_assists" id="assists" placeholder="PassesD"
-                           defaultValue={3}/>
-                    <input type="number" min={0} name="ben_shoots" id="shoots" placeholder="Tirs" defaultValue={5}/>
+                           defaultValue={0}/>
+                    <input type="number" min={0} name="ben_shoots" id="shoots" placeholder="Tirs" defaultValue={0}/>
                   </div>
                 </div>
                 <Button type="submit" value="Envoyer">
