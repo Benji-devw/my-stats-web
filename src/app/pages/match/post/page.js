@@ -186,7 +186,7 @@ const PostMatch = () => {
                   
                   <label htmlFor="media_video">Lien NGTV</label>
                   <input type="text" name="media_video" id="media_video"
-                         defaultValue={"https://www.youtube.com/watch?v=Q5mHPo2yDG8"}/>
+                         defaultValue={""}/>
                   
                   {/* <label htmlFor="team1_name">Nom de l'équipe 1</label> */}
                   <input type="text" name="team1_name" id="team1_name" defaultValue={"Team A"}/>
@@ -195,16 +195,16 @@ const PostMatch = () => {
                   <input type="text" name="team2_name" id="team2_name" defaultValue={"Team B"}/>
                   
                   <label htmlFor="team1_score">Score de Team A</label>
-                  <input type="number" name="team1_score" id="team1_score" min={0} value={totalGoals} disabled/>
+                  <input type="number" name="team1_score" id="team1_score" min={0} value={totalGoals}/>
                   
                   <label htmlFor="team2_score">Score de Team B</label>
-                  <input type="number" name="team2_score" id="team2_score" min={0} defaultValue={11}/>
+                  <input type="number" name="team2_score" id="team2_score" min={0}/>
                   
                   <label htmlFor="encounter_date">Date de la rencontre</label>
-                  <input type="date" name="encounter_date" id="encounter_date" defaultValue="2024-01-27"/>
+                  <input type="date" name="encounter_date" id="encounter_date" defaultValue=""/>
                   
                   <label htmlFor="encounter_time">Heure de la rencontre</label>
-                  <input type="time" name="encounter_time" id="encounter_time" defaultValue="12:12"/>
+                  <input type="time" name="encounter_time" id="encounter_time" defaultValue="15:30"/>
                 </div>
                 
                 <h3 className={styles.form_page_title}><b>Joueurs</b></h3>
