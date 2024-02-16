@@ -89,7 +89,6 @@ const PostMatch = () => {
     }
     
     
-    // TODO: change date
     const match = {
       id: new_id,
       media_video: e.target.media_video.value,
@@ -100,7 +99,7 @@ const PostMatch = () => {
       team2_score: Number(e.target.team2_score.value),
       match_average: 0,
       // encounter_date: e.target.encounter_date.value + ' ' + e.target.encounter_time.value,
-      encounter_date: new Date(),
+      encounter_date: e.target.encounter_date.value,
       created_at: new Date(),
       updated_at: new Date(),
     };
@@ -185,8 +184,7 @@ const PostMatch = () => {
                   <h3 className={styles.form_page_title}><b>Match</b></h3>
                   
                   <label htmlFor="media_video">Lien NGTV</label>
-                  <input type="text" name="media_video" id="media_video"
-                         defaultValue={""}/>
+                  <input type="text" name="media_video" id="media_video" defaultValue={""}/>
                   
                   {/* <label htmlFor="team1_name">Nom de l'équipe 1</label> */}
                   <input type="text" name="team1_name" id="team1_name" defaultValue={"Team A"}/>
@@ -216,6 +214,8 @@ const PostMatch = () => {
                     <label htmlFor="">Tirs</label>
                   </div>
                   <h3>Steph</h3>
+                    {/*<input type="checkbox" name="steph_did_not_play" id="steph_did_not_play"/>*/}
+                    {/*<label htmlFor="steph_did_not_play">Did not play</label>*/}
                   <div className={`${styles.form} ${styles.form_grid}`}>
                     <input type="number" min={0} name="steph_goals" id="goals" placeholder="Buts" defaultValue={0}
                            onChange={(e) => handleGoalsChange(e, 'steph_goals')}/>
