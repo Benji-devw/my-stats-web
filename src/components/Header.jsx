@@ -6,14 +6,12 @@ export default function Header () {
   return (
     <header>
       <div className={styles_layout.description}>
-        <p>
-          <code className={styles.code}>MY STATS v1</code>
-        </p>
+        <h1>MY STATS v1</h1>
       </div>
       
       <div className={styles_layout.header}>
         <div>
-          <code>MENU</code>
+          {/*<code>MENU</code>*/}
         </div>
       </div>
     </header>

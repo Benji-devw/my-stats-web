@@ -171,7 +171,7 @@ const PostMatch = () => {
     // Check if at least one player has played
     const playerNames = ['steph', 'tom', 'pedro', 'quentin', 'ben'];
     if (Object.values(playersAbsent).every(absent => absent)) {
-      alert("Au moins un joueur doit avoir joué");
+      alert("Aucun joueur !");
       setIsSubmitting(false);
       return;
     }
@@ -181,7 +181,7 @@ const PostMatch = () => {
         for (let i = 0; i < playersMatch.length; i++) {
           if (playersMatch[i].player_id === playerNames.indexOf(player) + 1) {
             playersMatch.splice(i, 1);
-            break; // break the loop once the player is found and removed
+            break;
           }
         }
       }
