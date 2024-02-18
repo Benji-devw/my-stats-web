@@ -8,7 +8,6 @@ import MatchCard from "@/components/Match_Card";
 import Link from "next/link";
 import LayoutPage from "@/app/pages/match/layoutPage";
 import Add_Button from "@/components/Add_Button";
-// import {unstable_noStore as noStore} from 'next/cache';
 import axios from 'redaxios';
 import MatchCardSqueleton from "@components/squeletons/Match_Card_squeleton";
 import PlayerCardSqueleton from "@components/squeletons/Player_Card_squeleton";
@@ -22,7 +21,6 @@ export default function Home() {
   const API_URL = process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app" : "http://localhost:3000";
   
   useEffect(() => {
-    // noStore();
     setLoading(true);
     setError(null);
     

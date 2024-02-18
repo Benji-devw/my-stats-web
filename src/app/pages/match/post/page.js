@@ -17,6 +17,13 @@ const PostMatch = () => {
     quentin_goals: 0,
     ben_goals: 0
   });
+  const [playersAbsent, setPlayersAbsent] = useState({
+    steph: false,
+    tom: false,
+    pedro: false,
+    quentin: false,
+    ben: false
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app' : 'http://localhost:3000';
   
@@ -25,6 +32,12 @@ const PostMatch = () => {
     setLoading(false);
   }, []);
   
+  // Update playersAbsent when checkbox change
+  const handleCheckboxChange = (player) => (e) => {
+    setPlayersAbsent(prevState => ({ ...prevState, [player]: e.target.checked }));
+  };
+  
+  // Update total goals when goals change
   const handleGoalsChange = (e, player) => {
     const newGoals = Number(e.target.value);
     const diff = newGoals - prevGoals[player];
@@ -32,6 +45,7 @@ const PostMatch = () => {
     setPrevGoals({...prevGoals, [player]: newGoals});
   };
   
+  // POST request to add match
   const addMatch = async (match) => {
     try {
       await axios.post(`${API_URL}/api/match/post`, {
@@ -44,7 +58,7 @@ const PostMatch = () => {
       setError(`Fetch error: ${error.message}`);
     }
   };
-  
+  // POST request to add playersMatch
   const addPlayerMatch = async (playersMatch) => {
     try {
       for (const player of playersMatch) {
@@ -88,22 +102,19 @@ const PostMatch = () => {
       }
     }
     
-    
+    // Create match and playersMatch objects
     const match = {
       id: new_id,
       media_video: e.target.media_video.value,
       team1_name: e.target.team1_name.value,
       team2_name: e.target.team2_name.value,
-      team1_score: totalGoals,
-      // team1_score: Number(e.target.steph_goals.value) + Number(e.target.tom_goals.value) + Number(e.target.pedro_goals.value) + Number(e.target.quentin_goals.value) + Number(e.target.ben_goals.value),
+      team1_score: Number(e.target.team1_score.value),
       team2_score: Number(e.target.team2_score.value),
       match_average: 0,
-      // encounter_date: e.target.encounter_date.value + ' ' + e.target.encounter_time.value,
       encounter_date: e.target.encounter_date.value,
       created_at: new Date(),
       updated_at: new Date(),
     };
-    
     const playersMatch = [
       {
         player_id: 1,
@@ -157,15 +168,36 @@ const PostMatch = () => {
       },
     ]
     
-    await addMatch(match);
-    await addPlayerMatch(playersMatch);
+    // Check if at least one player has played
+    const playerNames = ['steph', 'tom', 'pedro', 'quentin', 'ben'];
+    if (Object.values(playersAbsent).every(absent => absent)) {
+      alert("Au moins un joueur doit avoir joué");
+      setIsSubmitting(false);
+      return;
+    }
+    // Removing players in playersMatch if absent
+    for (let player in playersAbsent) {
+      if (playersAbsent[player]) {
+        for (let i = 0; i < playersMatch.length; i++) {
+          if (playersMatch[i].player_id === playerNames.indexOf(player) + 1) {
+            playersMatch.splice(i, 1);
+            break; // break the loop once the player is found and removed
+          }
+        }
+      }
+    }
+    
+    console.log(match)
+    console.log(playersMatch)
+    // await addMatch(match);
+    // await addPlayerMatch(playersMatch);
     setTimeout(() => {
       setIsSubmitting(false);
       alert('Match créé !');
     }, 1000);
   };
   
-  
+  // console.log(playersAbsent)
   return (
     <LayoutPage>
       <div className={""}>
@@ -178,28 +210,24 @@ const PostMatch = () => {
             <>
               <h2>Création Match :</h2>
               
-              {/* <div className={styles.form}> */}
               <form onSubmit={handleSubmit} className={isSubmitting ? styles.form_disabled : ''}>
                 <div className={`${styles.form} ${styles.form_flex}`}>
                   <h3 className={styles.form_page_title}><b>Match</b></h3>
                   
                   <label htmlFor="media_video">Lien NGTV</label>
-                  <input type="text" name="media_video" id="media_video" defaultValue={""}/>
+                  <input type="text" name="media_video" id="media_video"/>
                   
-                  {/* <label htmlFor="team1_name">Nom de l'équipe 1</label> */}
                   <input type="text" name="team1_name" id="team1_name" defaultValue={"Team A"}/>
-                  
-                  {/* <label htmlFor="team2_name">Nom de l'équipe 2</label> */}
                   <input type="text" name="team2_name" id="team2_name" defaultValue={"Team B"}/>
                   
                   <label htmlFor="team1_score">Score de Team A</label>
-                  <input type="number" name="team1_score" id="team1_score" min={0} value={totalGoals}/>
+                  <input type="number" name="team1_score" id="team1_score" min={0} />
                   
                   <label htmlFor="team2_score">Score de Team B</label>
                   <input type="number" name="team2_score" id="team2_score" min={0}/>
                   
                   <label htmlFor="encounter_date">Date de la rencontre</label>
-                  <input type="date" name="encounter_date" id="encounter_date" defaultValue=""/>
+                  <input type="date" name="encounter_date" id="encounter_date" />
                   
                   <label htmlFor="encounter_time">Heure de la rencontre</label>
                   <input type="time" name="encounter_time" id="encounter_time" defaultValue="15:30"/>
@@ -213,42 +241,57 @@ const PostMatch = () => {
                     <label htmlFor="">Passes D</label>
                     <label htmlFor="">Tirs</label>
                   </div>
+                  <div style={{position: "relative"}}>
                   <h3>Steph</h3>
-                    {/*<input type="checkbox" name="steph_did_not_play" id="steph_did_not_play"/>*/}
-                    {/*<label htmlFor="steph_did_not_play">Did not play</label>*/}
-                  <div className={`${styles.form} ${styles.form_grid}`}>
-                    <input type="number" min={0} name="steph_goals" id="goals" placeholder="Buts"
-                           onChange={(e) => handleGoalsChange(e, 'steph_goals')}/>
+                    <label className={styles.not_playing_label} htmlFor="steph_did_not_play">absent</label>
+                    <input className={styles.not_playing_input} type="checkbox" name="steph_did_not_play" id="steph_did_not_play" onChange={handleCheckboxChange('steph')}/>
+                  <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.steph ? styles.not_playing : ''}`}>
+                    <input type="number" min={0} name="steph_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'steph_goals')}/>
                     <input type="number" min={0} name="steph_assists" id="assists" placeholder="PassesD"/>
                     <input type="number" min={0} name="steph_shoots" id="shoots" placeholder="Tirs"/>
                   </div>
+                  </div>
+                  <div style={{position: "relative"}}>
                   <h3>Tom</h3>
-                  <div className={`${styles.form} ${styles.form_grid}`}>
-                    <input type="number" min={0} name="tom_goals" id="tom_goals" placeholder="Buts"
-                           onChange={(e) => handleGoalsChange(e, 'tom_goals')}/>
+                    <label className={styles.not_playing_label} htmlFor="tom_did_not_play">absent</label>
+                    <input className={styles.not_playing_input} type="checkbox" name="tom_did_not_play" id="tom_did_not_play" onChange={handleCheckboxChange('tom')}/>
+                  <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.tom ? styles.not_playing : ''}`}>
+                    <input type="number" min={0} name="tom_goals" id="tom_goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'tom_goals')}/>
                     <input type="number" min={0} name="tom_assists" id="tom_assists" placeholder="PassesD"/>
                     <input type="number" min={0} name="tom_shoots" id="tom_shoots" placeholder="Tirs"/>
                   </div>
+                  </div>
+                  <div style={{position: "relative"}}>
                   <h3>Pedro</h3>
-                  <div className={`${styles.form} ${styles.form_grid}`}>
-                    <input type="number" min={0} name="pedro_goals" id="goals" placeholder="Buts"
-                           onChange={(e) => handleGoalsChange(e, 'pedro_goals')}/>
+                    <label className={styles.not_playing_label} htmlFor="pedro_did_not_play">absent</label>
+                    <input className={styles.not_playing_input} type="checkbox" name="pedro_did_not_play" id="pedro_did_not_play" onChange={handleCheckboxChange('pedro')}/>
+                  <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.pedro ? styles.not_playing : ''}`}>
+                    <input type="number" min={0} name="pedro_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'pedro_goals')}/>
                     <input type="number" min={0} name="pedro_assists" id="assists" placeholder="PassesD"/>
                     <input type="number" min={0} name="pedro_shoots" id="shoots" placeholder="Tirs"/>
                   </div>
+                  
+                  </div>
+                  <div style={{position: "relative"}}>
                   <h3>Quentin</h3>
-                  <div className={`${styles.form} ${styles.form_grid}`}>
-                    <input type="number" min={0} name="quentin_goals" id="goals" placeholder="Buts"
-                           onChange={(e) => handleGoalsChange(e, 'quentin_goals')}/>
+                    <label className={styles.not_playing_label} htmlFor="quentin_did_not_play">absent</label>
+                    <input className={styles.not_playing_input} type="checkbox" name="quentin_did_not_play" id="quentin_did_not_play" onChange={handleCheckboxChange('quentin')}/>
+                  <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.quentin ? styles.not_playing : ''}`}>
+                    <input type="number" min={0} name="quentin_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'quentin_goals')}/>
                     <input type="number" min={0} name="quentin_assists" id="assists" placeholder="PassesD"/>
                     <input type="number" min={0} name="quentin_shoots" id="shoots" placeholder="Tirs"/>
                   </div>
+                  </div>
+                  <div style={{position: "relative"}}>
                   <h3>Ben</h3>
-                  <div className={`${styles.form} ${styles.form_grid}`}>
-                    <input type="number" min={0} name="ben_goals" id="goals" placeholder="Buts"
-                           onChange={(e) => handleGoalsChange(e, 'ben_goals')}/>
+                    <label className={styles.not_playing_label} htmlFor="ben_did_not_play">absent</label>
+                    <input className={styles.not_playing_input} type="checkbox" name="ben_did_not_play" id="ben_did_not_play" onChange={handleCheckboxChange('ben')}/>
+                  <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.ben ? styles.not_playing : ''}`}>
+                    <input type="number" min={0} name="ben_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'ben_goals')}/>
                     <input type="number" min={0} name="ben_assists" id="assists" placeholder="PassesD"/>
                     <input type="number" min={0} name="ben_shoots" id="shoots" placeholder="Tirs"/>
+                  </div>
+                  
                   </div>
                 </div>
                 <Button type="submit" value="Envoyer">

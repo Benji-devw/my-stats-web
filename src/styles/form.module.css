@@ -15,7 +15,8 @@
     justify-items: center;
     align-items: baseline;
     gap: 1rem;
-    /* margin: 2rem auto; */
+     margin: .5rem auto;
+    position: relative;
 }
 
 .form_flex {
@@ -85,4 +86,24 @@
     width: 10%;
     position: relative;
     margin-bottom: 1rem;
+}
+
+.not_playing_input {
+    position: absolute;
+    top: .5rem;
+    right: 4rem;
+    height: 15px;
+    width: 15px;
+}
+.not_playing_label {
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    font-size: 0.8rem;
+}
+
+.not_playing {
+    pointer-events: none;
+    opacity: 0.3;
+    transition: all .5s ease;
 }
