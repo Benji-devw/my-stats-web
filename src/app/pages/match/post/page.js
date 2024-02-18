@@ -187,10 +187,10 @@ const PostMatch = () => {
       }
     }
     
-    console.log(match)
-    console.log(playersMatch)
-    // await addMatch(match);
-    // await addPlayerMatch(playersMatch);
+    // console.log(match)
+    // console.log(playersMatch)
+    await addMatch(match);
+    await addPlayerMatch(playersMatch);
     setTimeout(() => {
       setIsSubmitting(false);
       alert('Match créé !');
