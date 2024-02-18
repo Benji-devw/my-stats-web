@@ -249,42 +249,41 @@ const PostMatch = () => {
                   <h3>Steph</h3>
                     <label className={styles.not_playing_label} htmlFor="steph_did_not_play">absent</label>
                     <input className={styles.not_playing_input} type="checkbox" name="steph_did_not_play" id="steph_did_not_play" onChange={handleCheckboxChange('steph')}/>
-                  <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.steph ? styles.not_playing : ''}`}>
-                    <input type="number" min={0} name="steph_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'steph_goals')}/>
-                    <input type="number" min={0} name="steph_assists" id="assists" placeholder="PassesD"/>
-                    <input type="number" min={0} name="steph_shoots" id="shoots" placeholder="Tirs"/>
-                  </div>
+                    <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.steph ? styles.not_playing : ''}`}>
+                      <input type="number" min={0} name="steph_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'steph_goals')}/>
+                      <input type="number" min={0} name="steph_assists" id="assists" placeholder="PassesD"/>
+                      <input type="number" min={0} name="steph_shoots" id="shoots" placeholder="Tirs"/>
+                    </div>
                   </div>
                   <div style={{position: "relative"}}>
                   <h3>Tom</h3>
                     <label className={styles.not_playing_label} htmlFor="tom_did_not_play">absent</label>
                     <input className={styles.not_playing_input} type="checkbox" name="tom_did_not_play" id="tom_did_not_play" onChange={handleCheckboxChange('tom')}/>
-                  <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.tom ? styles.not_playing : ''}`}>
-                    <input type="number" min={0} name="tom_goals" id="tom_goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'tom_goals')}/>
-                    <input type="number" min={0} name="tom_assists" id="tom_assists" placeholder="PassesD"/>
-                    <input type="number" min={0} name="tom_shoots" id="tom_shoots" placeholder="Tirs"/>
-                  </div>
+                    <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.tom ? styles.not_playing : ''}`}>
+                      <input type="number" min={0} name="tom_goals" id="tom_goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'tom_goals')}/>
+                      <input type="number" min={0} name="tom_assists" id="tom_assists" placeholder="PassesD"/>
+                      <input type="number" min={0} name="tom_shoots" id="tom_shoots" placeholder="Tirs"/>
+                    </div>
                   </div>
                   <div style={{position: "relative"}}>
                   <h3>Pedro</h3>
                     <label className={styles.not_playing_label} htmlFor="pedro_did_not_play">absent</label>
                     <input className={styles.not_playing_input} type="checkbox" name="pedro_did_not_play" id="pedro_did_not_play" onChange={handleCheckboxChange('pedro')}/>
-                  <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.pedro ? styles.not_playing : ''}`}>
-                    <input type="number" min={0} name="pedro_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'pedro_goals')}/>
-                    <input type="number" min={0} name="pedro_assists" id="assists" placeholder="PassesD"/>
-                    <input type="number" min={0} name="pedro_shoots" id="shoots" placeholder="Tirs"/>
-                  </div>
-                  
+                    <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.pedro ? styles.not_playing : ''}`}>
+                      <input type="number" min={0} name="pedro_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'pedro_goals')}/>
+                      <input type="number" min={0} name="pedro_assists" id="assists" placeholder="PassesD"/>
+                      <input type="number" min={0} name="pedro_shoots" id="shoots" placeholder="Tirs"/>
+                    </div>
                   </div>
                   <div style={{position: "relative"}}>
                   <h3>Quentin</h3>
                     <label className={styles.not_playing_label} htmlFor="quentin_did_not_play">absent</label>
                     <input className={styles.not_playing_input} type="checkbox" name="quentin_did_not_play" id="quentin_did_not_play" onChange={handleCheckboxChange('quentin')}/>
-                  <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.quentin ? styles.not_playing : ''}`}>
-                    <input type="number" min={0} name="quentin_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'quentin_goals')}/>
-                    <input type="number" min={0} name="quentin_assists" id="assists" placeholder="PassesD"/>
-                    <input type="number" min={0} name="quentin_shoots" id="shoots" placeholder="Tirs"/>
-                  </div>
+                    <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.quentin ? styles.not_playing : ''}`}>
+                      <input type="number" min={0} name="quentin_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'quentin_goals')}/>
+                      <input type="number" min={0} name="quentin_assists" id="assists" placeholder="PassesD"/>
+                      <input type="number" min={0} name="quentin_shoots" id="shoots" placeholder="Tirs"/>
+                    </div>
                   </div>
                   <div style={{position: "relative"}}>
                   <h3>Ben</h3>
@@ -295,13 +294,9 @@ const PostMatch = () => {
                     <input type="number" min={0} name="ben_assists" id="assists" placeholder="PassesD"/>
                     <input type="number" min={0} name="ben_shoots" id="shoots" placeholder="Tirs"/>
                   </div>
-                  
                   </div>
                 </div>
-                <Button type="submit" value="Envoyer">
-                  
-                  Envoyer
-                </Button>
+                <Button type="submit" value="Envoyer">Envoyer</Button>
               </form>
             </>
           )

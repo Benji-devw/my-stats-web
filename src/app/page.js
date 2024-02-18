@@ -1,7 +1,6 @@
 "use client";
 import "@styles/globals.css";
 import styles from "@styles/page.module.css";
-import squeletons from "@styles/squeletons.module.css";
 import {useEffect, useState} from "react";
 import PlayerCard from "@components/Player_Card.jsx";
 import calculateTotalStats from "@utils/totalStats.js";

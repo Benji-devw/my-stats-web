@@ -45,7 +45,7 @@
     position: relative;
     margin: 0 auto;
     right: 2rem;
-    bottom: 0rem;
+    bottom: 0;
 }
 
 /* Enable hover only on non-touch devices */
