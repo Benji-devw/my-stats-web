@@ -13,7 +13,7 @@ const PayerCard = (
   }) => {
   // console.log(totalStats);
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} fadeIn`}>
       <h2 className={styles.card_title}>
         <div className={""}>
           <Image

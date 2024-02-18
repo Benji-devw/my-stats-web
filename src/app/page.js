@@ -10,6 +10,8 @@ import LayoutPage from "@/app/pages/match/layoutPage";
 import Add_Button from "@/components/Add_Button";
 // import {unstable_noStore as noStore} from 'next/cache';
 import axios from 'redaxios';
+import MatchCardSqueleton from "@components/squeletons/Match_Card_squeleton";
+import PlayerCardSqueleton from "@components/squeletons/Player_Card_squeleton";
 
 
 export default function Home() {
@@ -41,7 +43,14 @@ export default function Home() {
   return (
     <LayoutPage>
       {loading ? (
-        <h2 className="">Loading...</h2>
+        <>
+          <div className={styles.matches_grid}>
+            <MatchCardSqueleton/>
+          </div>
+          <div className={styles.players_grid}>
+            <PlayerCardSqueleton/>
+          </div>
+        </>
       ) : error ? (
         <h2 className="">Error: {error}</h2>
       ) : (

@@ -88,8 +88,24 @@ code {
   /* font-family: var(--font-mono); */
 }
 
+.fadeIn {
+  animation: fadeIn .5s;
+  transform: translateY(0rem);
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
 } */
+
+

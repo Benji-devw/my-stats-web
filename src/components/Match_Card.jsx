@@ -13,7 +13,7 @@ const MatchCard = ({
                    }) => {
   // console.log(media_video);
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} fadeIn`}>
       <h3 className={styles.card_title}>
         {team1_name} vs {team2_name}
       </h3>
