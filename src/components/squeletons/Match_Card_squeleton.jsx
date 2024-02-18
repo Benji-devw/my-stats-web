@@ -1,12 +1,12 @@
-import styles from "@styles/match_card.module.css";
+import styles from "@styles/squeletons.module.css";
 
 export default function MatchCardSqueleton () {
   return (
     <>
-      <div className={styles.cardSqueleton}></div>
-      <div className={styles.cardSqueleton}></div>
-      <div className={styles.cardSqueleton}></div>
-      <div className={styles.cardSqueleton}></div>
+      <div className={styles.matchCardSqueleton}></div>
+      <div className={styles.matchCardSqueleton}></div>
+      <div className={styles.matchCardSqueleton}></div>
+      <div className={styles.matchCardSqueleton}></div>
     </>
   );
 };

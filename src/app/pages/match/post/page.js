@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from "react";
 import LayoutPage from "@/app/pages/match/layoutPage";
 import styles from "@styles/form.module.css";
+import FormSqueleton from "@components/squeletons/Post_Match_squeleton";
 import Button from "@/components/Button";
 import axios from 'ky';
 
@@ -29,7 +30,8 @@ const PostMatch = () => {
   
   useEffect(() => {
     setNew_Id(Math.floor(Math.random() * 99999));
-    setLoading(false);
+    setTimeout(() =>
+      setLoading(false), 700);
   }, []);
   
   // Update playersAbsent when checkbox change
@@ -203,7 +205,9 @@ const PostMatch = () => {
       <div className={""}>
         {
           loading ? (
-            <h2 className="">Loading...</h2>
+            <div className={`${styles.form} ${styles.form_flex}`}>
+              <FormSqueleton />
+            </div>
           ) : error ? (
             <h2 className="">Error: {error}</h2>
           ) : (
@@ -211,7 +215,7 @@ const PostMatch = () => {
               <h2>Création Match :</h2>
               
               <form onSubmit={handleSubmit} className={isSubmitting ? styles.form_disabled : ''}>
-                <div className={`${styles.form} ${styles.form_flex}`}>
+                <div className={`${styles.form} ${styles.form_flex} fadeIn`}>
                   <h3 className={styles.form_page_title}><b>Match</b></h3>
                   
                   <label htmlFor="media_video">Lien NGTV</label>
@@ -234,7 +238,7 @@ const PostMatch = () => {
                 </div>
                 
                 <h3 className={styles.form_page_title}><b>Joueurs</b></h3>
-                <div className={` ${styles.form_flex}`}>
+                <div className={` ${styles.form_flex} fadeIn`}>
                   
                   <div className={`${styles.form} ${styles.form_grid}`}>
                     <label htmlFor="">Buts</label>

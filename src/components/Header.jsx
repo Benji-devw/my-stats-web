@@ -9,11 +9,11 @@ export default function Header () {
         <h1>MY STATS v1</h1>
       </div>
       
-      <div className={styles_layout.header}>
-        <div>
-          {/*<code>MENU</code>*/}
-        </div>
-      </div>
+      {/*<div className={styles_layout.header}>*/}
+      {/*  <div>*/}
+      {/*    <code>MENU</code>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
     </header>
   );
 }

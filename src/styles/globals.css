@@ -92,13 +92,13 @@ code {
 }
 
 .fadeIn {
-  animation: fadeIn .5s;
+  animation: fadeIn .3s;
   transform: translateY(0rem);
 }
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translateY(1rem);
+    transform: translateY(.5rem);
   }
   100% {
     opacity: 1;

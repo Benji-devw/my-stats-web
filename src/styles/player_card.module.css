@@ -3,16 +3,6 @@
     flex-direction: column;
 }
 
-.cardSqueleton {
-    /*transform: rotate(90deg);*/
-    height: 300px;
-    margin: 1rem 2rem;
-    border-radius: var(--b-radius-12);
-    z-index: 100;
-    background: rgba(0, 0, 0, 0.3);
-    /*box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);*/
-}
-
 .card {
     display: flex;
     flex-direction: column;
