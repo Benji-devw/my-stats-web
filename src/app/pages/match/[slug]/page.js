@@ -4,9 +4,9 @@ import React, { useEffect, useState } from "react";
 import LayoutPage from "@/app/pages/match/layoutPage";
 import MatchCard from "@/components/Match_Card";
 import styles from "@styles/page.module.css";
-import StatsChart from "@/components/chart";
-// import PlayerCard from "@/components/Player_Card.jsx";
-
+import SingleChart from "@components/PlayerMatchStats";
+import axios from 'redaxios';
+import calculateTotalStats from "@utils/totalStats";
 
 const MatchPage = () => {
   const params = useParams();
@@ -15,28 +15,16 @@ const MatchPage = () => {
   const [error, setError] = useState(null);
   const API_URL =
     process.env.NODE_ENV === "production" ? "https://my-stats-bis.vercel.app" : "http://localhost:3000";
-
-  // console.log(params.slug);
+  
 
   useEffect(() => {
     setLoading(true);
     setError(null);
-
-    fetch(`${API_URL}/api/match/${params.slug}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    
+    axios
+      .get(`${API_URL}/api/match/${params.slug}`)
       .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        // Set the match data
-        setMatch(data.match);
+        setMatch(res.data.match);
       })
       .catch((error) => {
         setError(`Fetch error: ${error.message}`);
@@ -44,7 +32,7 @@ const MatchPage = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [API_URL, params.slug]);
 
   // console.log(match);
   return (
@@ -72,22 +60,9 @@ const MatchPage = () => {
             </div>
 
             <div className={styles.chart}>
-              Filtrer les stats par joueur:
-              <StatsChart players={match.Players} />
+              {/*<StatsChart players={match.Players} />*/}
+              <SingleChart players={match.Players} />
             </div>
-
-            {/* <div className={styles.players_grid}>
-              {Object(match.Players).map((player) => (
-                  <PlayerCard
-                    key={player.slug}
-                    name={player.name}
-                    media={player.media}
-                    golden={player.golden}
-                    golden_old={player.golden_old}
-                    totalStats={totalStats ? totalStats[player.slug] : []} // Add totalStats by id
-                  />
-                ))}
-            </div> */}
           </>
         )}
       </div>

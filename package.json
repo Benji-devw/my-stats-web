@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.2.9",
+    "@react-stately/data": "^3.11.2",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.4.1",
+    "framer-motion": "^11.0.5",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "ky": "^1.2.0",
@@ -26,8 +29,7 @@
     "react-dom": "^18",
     "react-router-dom": "^6.21.3",
     "redaxios": "^0.5.1",
-    "sequelize": "^6.35.2",
-    "sqlite3": "^5.1.7"
+    "sequelize": "^6.35.2"
   },
   "devDependencies": {
     "dotenv": "^16.3.2",
