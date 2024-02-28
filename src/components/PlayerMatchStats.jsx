@@ -13,8 +13,8 @@ export default function PlayerMatchStats({players}) {
   const greatAssistsMax = Math.max(...greatAssists);
   const greatShoots = players.map((player) => player.PlayersMatches.shoots);
   const greatShootsMax = Math.max(...greatShoots);
-  const greatAverage = players.map((player) => player.PlayersMatches.average);
-  const greatAverageMax = Math.max(...greatAverage);
+  // const greatAverage = players.map((player) => player.PlayersMatches.average);
+  // const greatAverageMax = Math.max(...greatAverage);
   
   return (
     <article className={`${styles.container} fadeIn`}>
@@ -34,10 +34,10 @@ export default function PlayerMatchStats({players}) {
               <div className={`${styles.progress_bar_average}`}>
                 <div
                   style={{
-                    width: `${(player.PlayersMatches.average / greatAverageMax) * 100}%`}}
+                    width: `${(player.PlayersMatches.average / 100) * 100}%`}}
                   className={`${styles.progress_average_bis} ${styles.progress_average}`}>
-                  <span className={styles.progress_text}>{player.PlayersMatches.average} %</span>
                 </div>
+                  <span className={styles.progress_text}>{player.PlayersMatches.average} %</span>
               </div>
               
               <div className={`${styles.progress_bar}`}>
