@@ -14,7 +14,7 @@
 
     --orange: rgba(230, 110, 63, 0.5);
     --yellow: rgba(230, 202, 63, 0.5);
-    --average-gradient: linear-gradient(270deg, rgba(201, 255, 51, 0.55), rgba(50, 50, 50, 0.2));
+    --average-gradient: linear-gradient(270deg, rgba(201, 255, 51, 0.5), rgba(50, 50, 50, 0.3));
     --foreground-rgb: #fcfcfd;
     --background: #1c1c1c;
     --background-start-rgb: #1c1c1c;
