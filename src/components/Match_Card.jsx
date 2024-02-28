@@ -30,7 +30,7 @@ const MatchCard = ({
       ) : (<h3><span>-&gt;</span></h3>)}
       
       <code>
-        Date: <b>{date}</b>
+        Date: <b>{new Date(date).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })}</b>
       </code>
     </div>
   );

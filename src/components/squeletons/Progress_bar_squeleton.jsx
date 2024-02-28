@@ -4,7 +4,6 @@ export default function ProgressBarSqueleton({cycle}) {
   return (
     <>
       {Array.from({length: cycle}).map((_, index) => (
-        <>
           <div key={index} className={styles.progressBarSqueleton_container}>
             <div className={styles.mediaSqueleton}></div>
             <div key={index} className={styles.progressBarSqueleton_content}>
@@ -13,7 +12,6 @@ export default function ProgressBarSqueleton({cycle}) {
               ))}
             </div>
           </div>
-        </>
       ))}
     </>
   );

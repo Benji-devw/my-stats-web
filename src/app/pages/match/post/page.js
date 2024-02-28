@@ -26,6 +26,7 @@ const PostMatch = () => {
     ben: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
   const API_URL = process.env.NODE_ENV === 'production' ? 'https://my-stats-bis.vercel.app' : 'http://localhost:3000';
   
   useEffect(() => {
@@ -54,7 +55,11 @@ const PostMatch = () => {
         body: JSON.stringify(match),
       })
         .json()
-        .then((response) => console.log(response))
+        .then((response) => {
+          console.log(response)
+          // alert('Match créé !');
+          // setIsSubmitting(false);
+        })
         .catch((error) => setError(`Fetch error: ${error.message}`));
     } catch (error) {
       setError(`Fetch error: ${error.message}`);
@@ -103,6 +108,8 @@ const PostMatch = () => {
         return;
       }
     }
+
+
     
     // Create match and playersMatch objects
     const match = {
@@ -188,6 +195,7 @@ const PostMatch = () => {
         }
       }
     }
+
     
     // console.log(match)
     // console.log(playersMatch)
@@ -221,20 +229,20 @@ const PostMatch = () => {
                   <label htmlFor="media_video">Lien NGTV</label>
                   <input type="text" name="media_video" id="media_video"/>
                   
-                  <input type="text" name="team1_name" id="team1_name" defaultValue={"Team A"}/>
-                  <input type="text" name="team2_name" id="team2_name" defaultValue={"Team B"}/>
+                  <input type="text" name="team1_name" id="team1_name" defaultValue={"Team A"} required/>
+                  <input type="text" name="team2_name" id="team2_name" defaultValue={"Team B"} required/>
                   
                   <label htmlFor="team1_score">Score de Team A</label>
-                  <input type="number" name="team1_score" id="team1_score" min={0} />
+                  <input type="number" name="team1_score" id="team1_score" min={0} required/>
                   
                   <label htmlFor="team2_score">Score de Team B</label>
-                  <input type="number" name="team2_score" id="team2_score" min={0}/>
+                  <input type="number" name="team2_score" id="team2_score" min={0} required/>
                   
                   <label htmlFor="encounter_date">Date de la rencontre</label>
-                  <input type="date" name="encounter_date" id="encounter_date" />
+                  <input type="date" name="encounter_date" id="encounter_date" required/>
                   
                   <label htmlFor="encounter_time">Heure de la rencontre</label>
-                  <input type="time" name="encounter_time" id="encounter_time" defaultValue="15:30"/>
+                  <input type="time" name="encounter_time" id="encounter_time" defaultValue="15:30" required/>
                 </div>
                 
                 <h3 className={styles.form_page_title}><b>Joueurs</b></h3>
@@ -250,9 +258,9 @@ const PostMatch = () => {
                     <label className={styles.not_playing_label} htmlFor="steph_did_not_play">absent</label>
                     <input className={styles.not_playing_input} type="checkbox" name="steph_did_not_play" id="steph_did_not_play" onChange={handleCheckboxChange('steph')}/>
                     <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.steph ? styles.not_playing : ''}`}>
-                      <input type="number" min={0} name="steph_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'steph_goals')}/>
-                      <input type="number" min={0} name="steph_assists" id="assists" placeholder="PassesD"/>
-                      <input type="number" min={0} name="steph_shoots" id="shoots" placeholder="Tirs"/>
+                      <input type="number" min={0} name="steph_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'steph_goals')} required={!playersAbsent.steph}/>
+                      <input type="number" min={0} name="steph_assists" id="assists" placeholder="PassesD" required={!playersAbsent.steph}/>
+                      <input type="number" min={0} name="steph_shoots" id="shoots" placeholder="Tirs" required={!playersAbsent.steph}/>
                     </div>
                   </div>
                   <div style={{position: "relative"}}>
@@ -260,9 +268,9 @@ const PostMatch = () => {
                     <label className={styles.not_playing_label} htmlFor="tom_did_not_play">absent</label>
                     <input className={styles.not_playing_input} type="checkbox" name="tom_did_not_play" id="tom_did_not_play" onChange={handleCheckboxChange('tom')}/>
                     <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.tom ? styles.not_playing : ''}`}>
-                      <input type="number" min={0} name="tom_goals" id="tom_goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'tom_goals')}/>
-                      <input type="number" min={0} name="tom_assists" id="tom_assists" placeholder="PassesD"/>
-                      <input type="number" min={0} name="tom_shoots" id="tom_shoots" placeholder="Tirs"/>
+                      <input type="number" min={0} name="tom_goals" id="tom_goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'tom_goals')} required={!playersAbsent.tom}/>
+                      <input type="number" min={0} name="tom_assists" id="tom_assists" placeholder="PassesD" required={!playersAbsent.tom}/>
+                      <input type="number" min={0} name="tom_shoots" id="tom_shoots" placeholder="Tirs" required={!playersAbsent.tom}/>
                     </div>
                   </div>
                   <div style={{position: "relative"}}>
@@ -270,9 +278,9 @@ const PostMatch = () => {
                     <label className={styles.not_playing_label} htmlFor="pedro_did_not_play">absent</label>
                     <input className={styles.not_playing_input} type="checkbox" name="pedro_did_not_play" id="pedro_did_not_play" onChange={handleCheckboxChange('pedro')}/>
                     <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.pedro ? styles.not_playing : ''}`}>
-                      <input type="number" min={0} name="pedro_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'pedro_goals')}/>
-                      <input type="number" min={0} name="pedro_assists" id="assists" placeholder="PassesD"/>
-                      <input type="number" min={0} name="pedro_shoots" id="shoots" placeholder="Tirs"/>
+                      <input type="number" min={0} name="pedro_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'pedro_goals')} required={!playersAbsent.pedro}/>
+                      <input type="number" min={0} name="pedro_assists" id="assists" placeholder="PassesD" required={!playersAbsent.pedro}/>
+                      <input type="number" min={0} name="pedro_shoots" id="shoots" placeholder="Tirs" required={!playersAbsent.pedro}/>
                     </div>
                   </div>
                   <div style={{position: "relative"}}>
@@ -280,9 +288,9 @@ const PostMatch = () => {
                     <label className={styles.not_playing_label} htmlFor="quentin_did_not_play">absent</label>
                     <input className={styles.not_playing_input} type="checkbox" name="quentin_did_not_play" id="quentin_did_not_play" onChange={handleCheckboxChange('quentin')}/>
                     <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.quentin ? styles.not_playing : ''}`}>
-                      <input type="number" min={0} name="quentin_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'quentin_goals')}/>
-                      <input type="number" min={0} name="quentin_assists" id="assists" placeholder="PassesD"/>
-                      <input type="number" min={0} name="quentin_shoots" id="shoots" placeholder="Tirs"/>
+                      <input type="number" min={0} name="quentin_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'quentin_goals')} required={!playersAbsent.quentin}/>
+                      <input type="number" min={0} name="quentin_assists" id="assists" placeholder="PassesD" required={!playersAbsent.quentin}/>
+                      <input type="number" min={0} name="quentin_shoots" id="shoots" placeholder="Tirs" required={!playersAbsent.quentin}/>
                     </div>
                   </div>
                   <div style={{position: "relative"}}>
@@ -290,9 +298,9 @@ const PostMatch = () => {
                     <label className={styles.not_playing_label} htmlFor="ben_did_not_play">absent</label>
                     <input className={styles.not_playing_input} type="checkbox" name="ben_did_not_play" id="ben_did_not_play" onChange={handleCheckboxChange('ben')}/>
                   <div className={`${styles.form} ${styles.form_grid} ${playersAbsent.ben ? styles.not_playing : ''}`}>
-                    <input type="number" min={0} name="ben_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'ben_goals')}/>
-                    <input type="number" min={0} name="ben_assists" id="assists" placeholder="PassesD"/>
-                    <input type="number" min={0} name="ben_shoots" id="shoots" placeholder="Tirs"/>
+                    <input type="number" min={0} name="ben_goals" id="goals" placeholder="Buts" onChange={(e) => handleGoalsChange(e, 'ben_goals')} required={!playersAbsent.ben}/>
+                    <input type="number" min={0} name="ben_assists" id="assists" placeholder="PassesD" required={!playersAbsent.ben}/>
+                    <input type="number" min={0} name="ben_shoots" id="shoots" placeholder="Tirs" required={!playersAbsent.ben}/>
                   </div>
                   </div>
                 </div>

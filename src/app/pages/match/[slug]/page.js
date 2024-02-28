@@ -6,7 +6,7 @@ import MatchCard from "@/components/Match_Card";
 import styles from "@styles/page.module.css";
 import SingleChart from "@components/PlayerMatchStats";
 import axios from 'redaxios';
-import calculateTotalStats from "@utils/totalStats";
+// import calculateTotalStats from "@utils/totalStats";
 import MatchCardSqueleton from "@components/squeletons/Match_Card_squeleton";
 import ProgressBarSqueleton from "@components/squeletons/Progress_bar_squeleton";
 
