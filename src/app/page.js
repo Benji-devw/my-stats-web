@@ -43,7 +43,7 @@ export default function Home() {
       {loading ? (
         <>
           <div className={styles.matches_grid}>
-            <MatchCardSqueleton  cycle={5}/>
+            <MatchCardSqueleton cycle={5}/>
           </div>
           <div className={styles.players_grid}>
             <PlayerCardSqueleton cycle={5}/>
