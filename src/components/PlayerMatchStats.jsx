@@ -3,7 +3,9 @@ import styles from "@styles/player_match_stats.module.css";
 import Image from "next/image";
 
 export default function PlayerMatchStats({players}) {
-
+  
+  const sortedPlayers = [...players].sort((a, b) => b.PlayersMatches.average - a.PlayersMatches.average);
+  
   // get greaters values
   const greatGoals = players.map((player) => player.PlayersMatches.goals);
   const greatGoalsMax = Math.max(...greatGoals);
@@ -17,7 +19,7 @@ export default function PlayerMatchStats({players}) {
   return (
     <article className={`${styles.container} fadeIn`}>
       {
-        players.map((player) => (
+        sortedPlayers.map((player) => (
           <div className={styles.content} key={player.id}>
             <h2><Image
               src={player.media}
