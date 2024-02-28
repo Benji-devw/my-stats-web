@@ -11,7 +11,7 @@ export default function LayoutPage({children}) {
       <div className={styles.bg_blur_bottom}>
         <Image
           src={media}
-          alt={name}
+          alt={''}
           // className={styles.card_media}
           width={200}
           height={200}
