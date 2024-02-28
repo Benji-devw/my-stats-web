@@ -30,7 +30,7 @@ export default function PlayerMatchStats({players}) {
               <div className={`${styles.progress_bar}`}>
                 <div
                   style={{
-                    width: `${(player.PlayersMatches.goals / greatGoalsMax) * 100}%`,
+                    width: `${(player.PlayersMatches.goals / greatGoalsMax) * 99}%`,
                     transition: "width 1s ease-in-out"
                   }}
                   className={`${styles.progress_goals_bis} ${styles.progress_goals}`}>
@@ -41,7 +41,7 @@ export default function PlayerMatchStats({players}) {
               
               <div className={`${styles.progress_bar}`}>
                 <div
-                  style={{width: `${(player.PlayersMatches.assists / greatAssistsMax) * 100}%`}}
+                  style={{width: `${(player.PlayersMatches.assists / greatAssistsMax) * 99}%`}}
                   className={`${styles.progress_assists_bis} ${styles.progress_assists}`}>
                   <span className={styles.progress_text}>PassesD</span>
                   <span className={styles.progress_text}>{player.PlayersMatches.assists}</span>
@@ -50,7 +50,7 @@ export default function PlayerMatchStats({players}) {
               
               <div className={`${styles.progress_bar}`}>
                 <div
-                  style={{width: `${(player.PlayersMatches.shoots / greatShootsMax) * 100}%`}}
+                  style={{width: `${(player.PlayersMatches.shoots / greatShootsMax) * 99}%`}}
                   className={`${styles.progress_shoots_bis} ${styles.progress_shoots}`}>
                   <span className={styles.progress_text}>Tirs</span>
                   <span className={styles.progress_text}>{player.PlayersMatches.shoots}</span>

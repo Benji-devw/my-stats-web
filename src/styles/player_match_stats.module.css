@@ -49,8 +49,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 0;
-    transition: width 1s ease-in-out;
+    /*width: 0;*/
+    /*transition: width 1s ease-in-out;*/
 }
 
 .progress_goals {
