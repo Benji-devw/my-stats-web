@@ -7,6 +7,8 @@ import styles from "@styles/page.module.css";
 import SingleChart from "@components/PlayerMatchStats";
 import axios from 'redaxios';
 import calculateTotalStats from "@utils/totalStats";
+import MatchCardSqueleton from "@components/squeletons/Match_Card_squeleton";
+import ProgressBarSqueleton from "@components/squeletons/Progress_bar_squeleton";
 
 const MatchPage = () => {
   const params = useParams();
@@ -39,12 +41,15 @@ const MatchPage = () => {
     <LayoutPage>
       <div className={styles.grid}>
         {loading ? (
-          <h2 className="">Loading...</h2>
+          <>
+            <MatchCardSqueleton cycle={1}/>
+            <ProgressBarSqueleton cycle={3}/>
+          </>
         ) : error ? (
           <h2 className="">Error: {error}</h2>
         ) : (
           <>
-            <h2>Match {params.slug}</h2>
+          <h2>Match {params.slug}</h2>
 
             <div className={styles.match_page_grid}>
               <MatchCard

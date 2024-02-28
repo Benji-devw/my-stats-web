@@ -13,7 +13,7 @@ export default function PlayerMatchStats({players}) {
   const greatShootsMax = Math.max(...greatShoots);
   
   return (
-    <article className={styles.container}>
+    <article className={`${styles.container} fadeIn`}>
       {
         players.map((player) => (
           <div className={styles.content} key={player.id}>
@@ -25,11 +25,14 @@ export default function PlayerMatchStats({players}) {
               height={60}
               priority
             /></h2>
-            <div className={styles.progress_bar_container}>
+            <div className={`${styles.progress_bar_container}`}>
               
               <div className={`${styles.progress_bar}`}>
                 <div
-                  style={{width: `${(player.PlayersMatches.goals / greatGoalsMax) * 100}%`}}
+                  style={{
+                    width: `${(player.PlayersMatches.goals / greatGoalsMax) * 100}%`,
+                    transition: "width 1s ease-in-out"
+                  }}
                   className={`${styles.progress_goals_bis} ${styles.progress_goals}`}>
                   <span className={styles.progress_text}>Buts</span>
                   <span className={styles.progress_text}>{player.PlayersMatches.goals}</span>

@@ -1,12 +1,11 @@
 import styles from "@styles/squeletons.module.css";
 
-export default function PlayerCardSqueleton() {
+export default function PlayerCardSqueleton({cycle}) {
   return (
     <>
-      <div className={styles.playersCardSqueleton}></div>
-      <div className={styles.playersCardSqueleton}></div>
-      {/*<div className={styles.cardSqueleton}></div>*/}
-      {/*<div className={styles.cardSqueleton}></div>*/}
+      {Array.from({length: cycle}).map((_, index) => (
+        <div key={index} className={styles.playersCardSqueleton}></div>
+      ))}
     </>
   );
 };

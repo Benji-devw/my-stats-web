@@ -2,8 +2,8 @@
 import "@styles/globals.css";
 import styles from "@styles/page.module.css";
 import {useEffect, useState} from "react";
-import PlayerCard from "@components/Player_Card.jsx";
-import calculateTotalStats from "@utils/totalStats.js";
+import PlayerCard from "@components/Player_Card";
+import calculateTotalStats from "@utils/totalStats";
 import MatchCard from "@/components/Match_Card";
 import Link from "next/link";
 import LayoutPage from "@/app/pages/match/layoutPage";
@@ -43,10 +43,10 @@ export default function Home() {
       {loading ? (
         <>
           <div className={styles.matches_grid}>
-            <MatchCardSqueleton/>
+            <MatchCardSqueleton  cycle={5}/>
           </div>
           <div className={styles.players_grid}>
-            <PlayerCardSqueleton/>
+            <PlayerCardSqueleton cycle={5}/>
           </div>
         </>
       ) : error ? (

@@ -1,16 +1,12 @@
 import styles from "@styles/squeletons.module.css";
 
-export default function FormSqueleton() {
+export default function FormSqueleton({cycle}) {
   return (
     <>
       <div className={styles.formTitleSqueleton}></div>
-      <div className={styles.formSqueleton}></div>
-      <div className={styles.formSqueleton}></div>
-      <div className={styles.formSqueleton}></div>
-      <div className={styles.formSqueleton}></div>
-      <div className={styles.formSqueleton}></div>
-      <div className={styles.formSqueleton}></div>
-      <div className={styles.formSqueleton}></div>
+      {Array.from({length: cycle}).map((_, index) => (
+        <div key={index} className={styles.formSqueleton}></div>
+      ))}
     </>
   );
 };

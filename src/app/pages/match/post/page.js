@@ -206,7 +206,7 @@ const PostMatch = () => {
         {
           loading ? (
             <div className={`${styles.form} ${styles.form_flex}`}>
-              <FormSqueleton />
+              <FormSqueleton cycle={7}/>
             </div>
           ) : error ? (
             <h2 className="">Error: {error}</h2>
